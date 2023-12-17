@@ -1,6 +1,6 @@
 package DrawingClient;
 
-import DrawingClient.ClientSocket.ClientSocket;
+import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.Gui.LoginGui;
 import DrawingClient.Gui.MainGui;
 
@@ -10,7 +10,7 @@ public class main {
 		// TODO Auto-generated method stub
 		String id=null;
 		int port=0;	
-		ClientSocket Socket = new ClientSocket();
+		ClientSocketProtocol Socket = new ClientSocketProtocol();
 		MainGui main = new MainGui();
 		LoginGui Login = new LoginGui();
 		

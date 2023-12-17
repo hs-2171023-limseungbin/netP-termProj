@@ -1,6 +1,7 @@
 package DrawingClient.ClientSocket;
 
 import java.awt.image.BufferedImage;
+
 import java.net.Socket;
 
 import javax.swing.JTextArea;
@@ -10,7 +11,7 @@ import DrawingClient.ClientSocket.MsgThread.GetMsg;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 import DrawingClient.Gui.PaintManager;
 
-public class ClientSocket {
+public class ClientSocketProtocol {
 	private Socket Server;
 	private String ip = null;
 	private int port = 0;
