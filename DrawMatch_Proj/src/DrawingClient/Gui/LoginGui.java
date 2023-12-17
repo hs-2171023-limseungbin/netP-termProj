@@ -11,11 +11,8 @@ import javax.swing.JTextField;
 public class LoginGui {
 	private int PanelWidth = 200;
 	private int PanelHeight = 150;
-	private String port = "127.0.0.1";
 
 	private JFrame frame;
-	//private JLabel PortLabel;
-	//private JTextField PortTextField;
 	private JLabel idLabel;
 	private JTextField idTextField;
 	private JButton button;
@@ -42,25 +39,30 @@ public class LoginGui {
 	}
 	
 	private void createidLabel() {
+		idLabel = new JLabel();
 		idLabel.setText("ID: ");
 		idLabel.setBounds(10,30,30,30);
+		frame.add(idLabel);
 	}
 	
 	private void createidTextField() {
-		idTextField.setBounds(50,50,120,30);
+		idTextField = new JTextField();
+		idTextField.setBounds(50,33,120,30);
 		idTextField.setHorizontalAlignment(JTextField.CENTER);
+		frame.add(idTextField);
 	}
 	
 	private void createButton() {
+		button = new JButton();
 		button.setText("로그인");
 		button.setBounds(0,70,200,30);
+		frame.add(button);
 	}
 	
 	private void setId() {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				id = idTextField.getText();
-				port = getPort();
 				frame.dispose();
 			}
 		});
@@ -68,9 +70,5 @@ public class LoginGui {
 	
 	public String getId() {
 		return this.id;
-	}
-	
-	public String getPort() {
-		return this.port;
 	}
 }
