@@ -1,14 +1,13 @@
 package DrawingServer;
 
-import java.net.ServerSocket;
-
 import DrawingServer.Gui.MainGui;
 import DrawingServer.ServerSocket.ServerSocketProtocol;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
 		ServerSocketProtocol server = new ServerSocketProtocol();
 		MainGui main = new MainGui();
 		

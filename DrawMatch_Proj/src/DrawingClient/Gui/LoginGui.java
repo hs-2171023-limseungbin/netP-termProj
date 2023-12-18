@@ -18,6 +18,7 @@ public class LoginGui {
 	private JButton button;
 
 	private String id = null;
+	private String ip = "127.0.0.1";
 	
 	public void makeLoginFrame() {
 		createLoginFrame();
@@ -25,6 +26,7 @@ public class LoginGui {
 		createidTextField();
 		createButton();
 		frame.repaint();
+		setIp();
 		setId();
 	}
 	
@@ -70,5 +72,12 @@ public class LoginGui {
 	
 	public String getId() {
 		return this.id;
+	}
+	public String getIp() {
+		return this.ip;
+	}
+	
+	private void setIp() {
+		this.ip = "127.0.0.1";
 	}
 }

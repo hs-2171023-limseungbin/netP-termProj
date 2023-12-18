@@ -3,7 +3,8 @@ package DrawingServer.Gui;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.net.ServerSocket;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -38,6 +39,12 @@ public class MainGui {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent windowEvent) {
+		        System.exit(0);
+		    }
+		});
 	}
 	private void createStartBtn() {
 		startBtn = new JButton("게임 시작");
@@ -45,10 +52,10 @@ public class MainGui {
 		frame.add(startBtn);
 	}
 	private void createJoinUserField() {
-		joinUserField = new JTextField();
-		joinUserField.setText("접속유저");
+		joinUserField = new JTextField("접속 유저");
+		//joinUserField.setText("접속유저");
 		joinUserField.setBounds(10,70,480,30);
-		joinUserField.setBorder(BorderFactory.createLineBorder(Color.black));
+		joinUserField.setBorder(BorderFactory.createLineBorder(Color.black,1));
 		joinUserField.setDisabledTextColor(Color.black);
 		joinUserField.setEnabled(false);
 		frame.add(joinUserField);
@@ -67,8 +74,8 @@ public class MainGui {
 	private void createChatTextField() {
 		chatTextField = new JTextField(); 
 		chatTextField.setBounds(10,360,480,30);
-		chatTextField.setBorder(BorderFactory.createLineBorder(Color.black));
-		frame.add(chatTextArea);
+		chatTextField.setBorder(BorderFactory.createLineBorder(Color.black,1));
+		frame.add(chatTextField);
 		chatTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
