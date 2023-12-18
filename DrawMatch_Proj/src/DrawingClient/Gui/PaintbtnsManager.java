@@ -17,8 +17,7 @@ public class PaintbtnsManager {
         makeButton(Color.BLUE, 150, 415, 60, 40);
         makeButton(Color.GREEN, 220, 415, 60, 40);
         makeButton(Color.YELLOW, 290, 415, 60, 40);
-        makeButton(Color.WHITE, 360, 415, 60, 40); // Eraser button
-        makeClearButton();
+        makeButton(Color.WHITE, 360, 415, 60, 40);
     }
 
     private void makeButton(Color color, int x, int y, int width, int height) {
@@ -47,10 +46,6 @@ public class PaintbtnsManager {
         }
     }
 
-    private void makeClearButton() {
-        // Implementation for the clear button
-    }
-
     private String getColorCommand(Color color) {
         if (color.equals(Color.BLACK)) {
             return "BLACK";
@@ -65,8 +60,7 @@ public class PaintbtnsManager {
         } else if (color.equals(Color.WHITE)) {
             return "ERASER";
         } else {
-            // Handle other colors or return a default command
-            return "DEFAULT";
+            return "BLACK";
         }
     }
 

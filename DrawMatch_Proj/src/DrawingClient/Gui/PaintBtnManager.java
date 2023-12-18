@@ -15,7 +15,9 @@ public class PaintBtnManager extends JButton {
 
     public PaintBtnManager(Color color, int x, int y, int width, int height) {
         setBounds(x, y, width, height);
-        setBackground(color);
+        setText(getColorCommand(color));
+        setOpaque(true);  // Ensure that the button is opaque
+        setBackground(color);  // Set the initial background color of the button
         makeEvent(color);
     }
 
