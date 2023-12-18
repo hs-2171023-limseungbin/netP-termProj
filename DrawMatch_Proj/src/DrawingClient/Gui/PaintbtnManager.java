@@ -10,7 +10,7 @@ import DrawingClient.ClientSocket.GameManager;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
 public class PaintbtnManager{
-	private PaintManager paint;
+	private DrawPaintManager paint;
 	private JButton blackBtn;
 	private JButton redBtn;
 	private JButton blueBtn;
@@ -82,7 +82,7 @@ public class PaintbtnManager{
        	});
     }
     
-    public void setPaint(PaintManager paint) {
+    public void setPaint(DrawPaintManager paint) {
     	this.paint = paint;
     	setPaintForBtn(paint, blackBtn);
     	setPaintForBtn(paint, redBtn);
@@ -118,7 +118,7 @@ public class PaintbtnManager{
 		return clearBtn;
 	}
     
-	private void setPaintForBtn(PaintManager paint, JButton btn) {
+	private void setPaintForBtn(DrawPaintManager paint, JButton btn) {
 		if(btn != null) {
 			btn.putClientProperty("paint", btn);
 		}

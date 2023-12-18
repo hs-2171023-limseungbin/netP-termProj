@@ -11,14 +11,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import DrawingClient.ClientSocket.GameManager;
-import DrawingClient.Gui.PaintManager;
+import DrawingClient.Gui.DrawPaintManager;
 
 public class GetMsg extends Thread{
 
 	private Socket Server;
 	private BufferedReader msgbuff;
 	private String msg;
-	private PaintManager paint;
+	private DrawPaintManager paint;
 	private BufferedImage drawField;
 	private int x,y;
 	private JTextArea textArea;
@@ -57,17 +57,17 @@ public class GetMsg extends Thread{
 						paint.printAll(drawField.getGraphics());
 					}else if (pars[0].equals("Color")) {
 						if (pars[1].equals("BLACK"))
-							paint.setColor(Color.BLACK);
+							paint.setColor(Color.black);
 						else if (pars[1].equals("BLUE"))
-							paint.setColor(Color.BLUE);
+							paint.setColor(Color.blue);
 						else if (pars[1].equals("RED"))
-							paint.setColor(Color.RED);
+							paint.setColor(Color.red);
 						else if (pars[1].equals("GREEN"))
-							paint.setColor(Color.GREEN);
+							paint.setColor(Color.green);
 						else if (pars[1].equals("YELLOW"))
-							paint.setColor(Color.YELLOW);
+							paint.setColor(Color.white);
 						else if (pars[1].equals("WHITE"))
-							paint.setColor(Color.WHITE);
+							paint.setColor(Color.white);
 					} else if (pars[0].equals("CHAT")) {
 						textArea.append(pars[1] + "\n");
 						textArea.setCaretPosition(textArea.getDocument().getLength());
@@ -96,7 +96,7 @@ public class GetMsg extends Thread{
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
 	}
-	public void setPaint(PaintManager paint) {
+	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
 	}
 

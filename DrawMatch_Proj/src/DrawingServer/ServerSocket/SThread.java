@@ -42,7 +42,7 @@ public class SThread extends Thread{
 		while(true) {
 			try {
 				msg = enterUser.readLine();
-				if(msg.contains("CHAT:)")){
+				if(msg.contains("CHAT:")){
 					msg += " ";
 					String[] pars = msg.split(":");
 					System.out.println(pars[1]);
@@ -51,13 +51,18 @@ public class SThread extends Thread{
 						GameManager.gotAnswerRight(id);
 					}
 					if(pars[0].equals("CHAT")) {
-						pars[1] += "";
+						pars[1] += " ";
 						msg = "CHAT:" + "[" + id + "]" + pars[1];
 					}
 				}
 				chatOnAllUserMsg();
 			}catch(IOException e) {
-				e.printStackTrace();
+				msg = "CHAT:" + id + " out the room.";
+				chatOnAllUserMsg();
+				//Client.close();
+				ServerSocketProtocol.List.remove(user);
+				fileUpdate();
+				break;
 			}
 		}
 	}
@@ -68,7 +73,6 @@ public class SThread extends Thread{
 			fileUpdate();
 			chatTextArea.append(id + "님이 입장하셨습니다.\n");
 		}catch(IOException e) {
-			e.printStackTrace();
 		}for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).sendMsg("입장:" + id);
 		}
@@ -85,7 +89,7 @@ public class SThread extends Thread{
 	}
 	private void fileUpdate(){
 		String str = new String();
-		str = "정답은:";
+		str = "접속 인원:";
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			str += ServerSocketProtocol.List.get(i).getUserId()+" ";
 		}

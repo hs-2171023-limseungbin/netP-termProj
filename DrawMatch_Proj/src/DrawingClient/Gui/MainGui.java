@@ -15,20 +15,21 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import DrawingClient.ClientSocket.GameManager;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
 public class MainGui {
-	private int panelWidth = 500;
-	private int panelHeight = 500;
+	private int panelWidth = 480;
+	private int panelHeight = 400;
 	private BufferedImage drawField;
 	
 	private JFrame frame;
 	private JLabel drawLabel;
 	private PaintbtnManager btn;
-	private PaintManager paint;
+	private DrawPaintManager paint;
 	
 	private JTextField inputTextField;
 	private JTextField answerTextField;
@@ -43,6 +44,7 @@ public class MainGui {
 		createAnswerFrame();
 		createPaintTextArea();
 		createPaintInputTextField();
+		frame.repaint();
 	};
 	
 	private void createMainFrame() {
@@ -63,7 +65,7 @@ public class MainGui {
 	}
 	
 	private void createPaint() {
-		paint = new PaintManager();
+		paint = new DrawPaintManager();
 		paint.setBounds(10,10,panelWidth, panelHeight);
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
@@ -74,6 +76,7 @@ public class MainGui {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
 				if(GameManager.changeTurn == true) {
+					SwingUtilities.invokeLater(() -> paint.repaint());
 					SendMsg.msg.flush();
 				}
 			}
@@ -140,7 +143,7 @@ public class MainGui {
 		return drawField;
 	}
 
-	public PaintManager getPaint() {
+	public DrawPaintManager getPaint() {
 		return paint;
 	}
 

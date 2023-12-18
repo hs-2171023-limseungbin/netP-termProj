@@ -1,7 +1,6 @@
 package DrawingClient.ClientSocket;
 
 import java.awt.image.BufferedImage;
-
 import java.net.Socket;
 
 import javax.swing.JTextArea;
@@ -9,7 +8,7 @@ import javax.swing.JTextField;
 
 import DrawingClient.ClientSocket.MsgThread.GetMsg;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
-import DrawingClient.Gui.PaintManager;
+import DrawingClient.Gui.DrawPaintManager;
 
 public class ClientSocketProtocol {
 	private Socket Server;
@@ -17,7 +16,7 @@ public class ClientSocketProtocol {
 	private int port = 0;
 	private SendMsg Thread1;
 	private GetMsg Thread2;
-	private PaintManager paint;
+	private DrawPaintManager paint;
 	private BufferedImage drawField;
 	private JTextArea textArea;
 	private JTextField answerTextField;
@@ -48,6 +47,7 @@ public class ClientSocketProtocol {
 		Thread1.setSocket(Server);
 		Thread1.setId(id);
 		Thread2.setAnswerTextField(answerTextField);
+		Thread2.setSocket(Server);
 		Thread2.setPaint(paint);
 		Thread2.setTextArea(textArea);
 		Thread2.setDrawField(drawField);
@@ -62,7 +62,7 @@ public class ClientSocketProtocol {
 		this.textArea = textArea;
 	}
 
-	public void setPaint(PaintManager paint) {
+	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
 	}
 
