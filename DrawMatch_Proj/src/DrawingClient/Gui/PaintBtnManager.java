@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import DrawingClient.ClientSocket.GameManager;
+import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
 
@@ -22,7 +22,7 @@ public class PaintBtnManager extends JButton {
     private void makeEvent(final Color color) {
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (GameManager.changeTurn) {
+                if (ClientSocketProtocol.changeTurn) {
                     SendMsg.msg.println("Color:" + getColorCommand(color));
                     SendMsg.msg.flush();
                     paint.setColor(color);

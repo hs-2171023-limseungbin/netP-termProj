@@ -93,7 +93,7 @@ public class SThread extends Thread{
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			str += ServerSocketProtocol.List.get(i).getUserId()+" ";
 		}
-		joinUserField.setText(str);
+		joinUserField.setText("\n" + str + "\n");
 	}
 	private void setClient() {
 		this.Client = user.getClient();

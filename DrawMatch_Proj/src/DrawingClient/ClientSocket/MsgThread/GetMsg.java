@@ -10,7 +10,7 @@ import java.net.Socket;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import DrawingClient.ClientSocket.GameManager;
+import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.Gui.DrawPaintManager;
 
 public class GetMsg extends Thread{
@@ -79,9 +79,9 @@ public class GetMsg extends Thread{
 							ClearDrawField();
 					} else if (pars[0].equals("SET")) {
 						if (pars[1].equals("FALSE")) {
-							GameManager.changeTurn = false;
+							ClientSocketProtocol.changeTurn = false;
 						} else if(pars[1].equals("TRUE")) {
-							GameManager.changeTurn = true;
+							ClientSocketProtocol.changeTurn = true;
 						}
 					} else if(pars[0].equals("ANSWER")) {
 						answerTextField.setText(pars[1]);

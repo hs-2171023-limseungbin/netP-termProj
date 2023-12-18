@@ -17,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-import DrawingClient.ClientSocket.GameManager;
+import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
 public class MainGui {
@@ -74,7 +74,7 @@ public class MainGui {
 	private void createMouseEvent() {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
-				if(GameManager.changeTurn == true) {
+				if(ClientSocketProtocol.changeTurn == true) {
 					SendMsg.msg.println("Position:"+e.getX()+","+e.getY());
 					SendMsg.msg.flush();
 				}

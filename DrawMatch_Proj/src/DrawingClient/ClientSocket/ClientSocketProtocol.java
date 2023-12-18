@@ -11,6 +11,9 @@ import DrawingClient.ClientSocket.MsgThread.SendMsg;
 import DrawingClient.Gui.DrawPaintManager;
 
 public class ClientSocketProtocol {
+	static public boolean starGame = true;
+	static public boolean changeTurn = true;
+	
 	private Socket Server;
 	private String ip = null;
 	private int port = 0;
