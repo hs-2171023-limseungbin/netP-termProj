@@ -33,11 +33,10 @@ public class ReadAnswerSheet {
 		}catch(FileNotFoundException e) {
 			System.out.println("파일을 찾을 수 없습니다.");
 		}catch(IOException e) {
-			e.printStackTrace();
 		}
 	}
 	public ArrayList<String> getList() {
-		return list;
+		return this.list;
 	}
 	
 }

@@ -83,7 +83,7 @@ public class ServerSocketProtocol {
 		}else {return true;}
 	}
 	private void startGame() {
-		chatTextArea.append("운영자[서버]: 게임을 시작합니다.");
+		chatTextArea.append("운영자[서버]: 게임을 시작합니다.\n");
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 		GameThread gameThread = new GameThread();
 		gameThread.setChatTextArea(chatTextArea);

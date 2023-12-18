@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import DrawingClient.ClientSocket.GameManager;
@@ -28,7 +27,7 @@ public class MainGui {
 	
 	private JFrame frame;
 	private JLabel drawLabel;
-	private PaintbtnManager btn;
+	private PaintbtnsManager btn;
 	private DrawPaintManager paint;
 	
 	private JTextField inputTextField;
@@ -76,7 +75,7 @@ public class MainGui {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
 				if(GameManager.changeTurn == true) {
-					SwingUtilities.invokeLater(() -> paint.repaint());
+					SendMsg.msg.println("Position:"+e.getX()+","+e.getY());
 					SendMsg.msg.flush();
 				}
 			}
@@ -86,16 +85,16 @@ public class MainGui {
 	}
 	
 	private void createPaintBtns() {
-		btn = new PaintbtnManager();
+		btn = new PaintbtnsManager();
 		btn.setPaint(paint);
-		btn.createBtn();
-		frame.add(btn.getBlackBtn());
-		frame.add(btn.getBlueBtn());
-		frame.add(btn.getRedBtn());
-		frame.add(btn.getGreenBtn());
-		frame.add(btn.getYellowBtn());
-		frame.add(btn.getEraseBtn());
-		frame.add(btn.getClearBtn());
+		btn.makeButtons();
+		frame.add(btn.getBlackbtn());
+		frame.add(btn.getBluebtn());
+		frame.add(btn.getRedbtn());
+		frame.add(btn.getGreenbtn());
+		frame.add(btn.getYellowbtn());
+		frame.add(btn.getEraserbtn());
+		//frame.add(btn.getClearbtn());
 	}
 	
 	private void createAnswerFrame() {
