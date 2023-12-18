@@ -115,7 +115,6 @@ public class MainGui {
 		Border textAreaBorder = BorderFactory.createLineBorder(Color.black);
 		textArea.setEnabled(false);
 		textArea.setDisabledTextColor(Color.black);
-		//textArea.setFont(textArea.getFont().deriveFont(style:10));
 		textArea.setBorder(textAreaBorder);
 		textArea.setCaretPosition(textArea.getDocument().getLength());
 		frame.add(scroll);
