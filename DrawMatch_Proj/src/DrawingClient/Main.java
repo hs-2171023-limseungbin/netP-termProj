@@ -4,12 +4,12 @@ import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.Gui.LoginGui;
 import DrawingClient.Gui.MainGui;
 
-//DrawingClient의 메인 코드
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String id=null;
+		String ip=null;	
 		ClientSocketProtocol Socket = new ClientSocketProtocol();
 		MainGui main = new MainGui();
 		LoginGui Login = new LoginGui();
@@ -17,8 +17,9 @@ public class Main {
 		
 		do {
 			id = Login.getId();
+			ip = Login.getIp();
 			System.out.println("");
-		}while(id==null);
+		}while(id==null || ip==null);
 		Socket.setIp("127.0.0.1");
 		Socket.setPort(8888);
 		Socket.setId(id);

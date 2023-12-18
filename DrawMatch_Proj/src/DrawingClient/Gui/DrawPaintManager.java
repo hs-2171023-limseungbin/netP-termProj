@@ -14,7 +14,11 @@ public class DrawPaintManager extends JLabel{
     public void paint(Graphics g) {
         if(choiceColor == true) {
             g.setColor(color);
-            g.fillOval(x, y,10,10);
+            g.fillOval(x - 2, y - 2,10,20);
+        }else if(choiceColor==false) {
+            g.setColor(Color.white);
+            g.fillRect(0, 0, 1000, 1000);
+            choiceColor = true;
         }
     }
 
