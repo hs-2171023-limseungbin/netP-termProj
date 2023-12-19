@@ -12,18 +12,24 @@ public class GameThread extends Thread{
 		super.run();
 		DrawMatchGame game = new DrawMatchGame();
 		String answer;
-		int index = 0;
+		int index = 0; //유저의 차례를 판단하는 index
+		
 		game.start();
 		GameManager.startGame();
+		
 		while(game.moreAnswer()) {
 			answer = game.getAnswer();
+			
 			GameManager.answer = answer;
-			System.out.println(answer);
+			
 			GameManager.turnToGame = true;
 			GameManager.turnToAnswer = false;
+			
 			GameManager.Id = ServerSocketProtocol.List.get(index).getUserId();
 			GameManager.ChatOnAllUser("[운영자]>"+GameManager.Id+"님의 차례입니다.");
+			
 			chatTextArea.append("[운영자]>"+ GameManager.Id+ "님의 차례입니다.\n");
+			
 			ServerSocketProtocol.List.get(index).sendMsg("SET:TRUE");
 			ServerSocketProtocol.List.get(index).sendMsg("CHAT:[운영자]>" + "당신의 차례입니다.");
 			ServerSocketProtocol.List.get(index).sendMsg("CHAT:[운영자]>" + "정답은 "+ answer + "입니다.");

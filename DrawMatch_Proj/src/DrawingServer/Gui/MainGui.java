@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import DrawingServer.ServerSocket.ServerSocketProtocol;
-
+//서버 GUI
 public class MainGui {
 	private JFrame frame;
 	private JButton startBtn;

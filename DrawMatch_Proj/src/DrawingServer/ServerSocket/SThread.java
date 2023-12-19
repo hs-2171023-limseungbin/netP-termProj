@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-
 import javax.swing.JTextArea;
-
 import DrawingServer.Game.GameManager;
 
+//각 클라이언트로부터 메시지를 받은 스레드 클래스
 public class SThread extends Thread{
 	private User user;
 	private Socket Client;
@@ -36,6 +35,7 @@ public class SThread extends Thread{
 			e.printStackTrace();
 		}
 	}
+	//클라이언트 응답 대기
 	private void waitRes() {
 		while(true) {
 			try {
@@ -58,7 +58,7 @@ public class SThread extends Thread{
 				msg = "CHAT:" + id + " out the room.";
 				chatOnAllUserMsg();
 				ServerSocketProtocol.List.remove(user);
-				fileUpdate();
+				
 				break;
 			}
 		}
@@ -67,13 +67,13 @@ public class SThread extends Thread{
 		try {
 			id = enterUser.readLine();
 			user.setUserId(id);
-			fileUpdate();
 			chatTextArea.append(id + "님이 입장하셨습니다.\n");
 		}catch(IOException e) {
 		}for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).sendMsg("입장:" + id);
 		}
 	}
+	//입장한 모든 사용자에게 메시지 전송
 	private void chatOnAllUserMsg() {
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).sendMsg(msg);
@@ -82,13 +82,6 @@ public class SThread extends Thread{
 			String pars[] = msg.split(":");
 			chatTextArea.append(pars[1]+"\n");
 			chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
-		}
-	}
-	private void fileUpdate(){
-		String str = new String();
-		str = "접속 인원" + "\n";
-		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			str += ServerSocketProtocol.List.get(i).getUserId()+" \n";
 		}
 	}
 	private void setClient() {

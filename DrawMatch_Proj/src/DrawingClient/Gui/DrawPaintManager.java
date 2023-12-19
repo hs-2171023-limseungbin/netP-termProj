@@ -4,10 +4,11 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
+//그림 그리는 영역 관리 클래스
 public class DrawPaintManager extends JLabel{
 	private int x;
     private int y;
-    public boolean choiceColor = false;
+    public boolean choiceColor = false; //색상 선택 여부
     public Color color = Color.black;
 
     @Override

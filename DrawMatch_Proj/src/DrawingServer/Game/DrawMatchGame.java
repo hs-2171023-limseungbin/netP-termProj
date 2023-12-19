@@ -1,11 +1,11 @@
 package DrawingServer.Game;
 
 import java.util.ArrayList;
-
+// 게임 구현 클래스
 public class DrawMatchGame {
-	private ReadAnswerSheet readfile;
-	private ArrayList<String> answerList;
-	private String answer;
+	private ReadAnswerSheet readfile; //AnswerSheet.txt를 읽는 객체 
+	private ArrayList<String> answerList; //정답 리스트
+	private String answer; //현재 정답
 	
 	public void start() {
 		readFile();
@@ -17,11 +17,6 @@ public class DrawMatchGame {
 	}
 	private void saveAnswer() {
 		answerList = readfile.getList();
-	}
-	public void print() {
-		for(int i=0; i<answerList.size(); i++) {
-			System.out.println(answerList.get(i));
-		}
 	}
 	public boolean moreAnswer() {
 		if(answerList.size() != 0) {

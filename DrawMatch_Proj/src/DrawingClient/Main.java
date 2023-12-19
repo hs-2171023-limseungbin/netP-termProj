@@ -10,11 +10,15 @@ public class Main {
 		// TODO Auto-generated method stub
 		String id=null;
 		String ip=null;	
+		
 		ClientSocketProtocol Socket = new ClientSocketProtocol();
 		MainGui main = new MainGui();
 		LoginGui Login = new LoginGui();
+		
+		//로그인 창 생성
 		Login.makeLoginFrame();
 		
+		//ID,IP 무입력 방지
 		do {
 			id = Login.getId();
 			ip = Login.getIp();

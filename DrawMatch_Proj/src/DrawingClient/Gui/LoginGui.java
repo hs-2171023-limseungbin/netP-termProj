@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+//로그인 GUI
 public class LoginGui {
     private JFrame frame;
     private JLabel titleLabel;
@@ -69,7 +70,7 @@ public class LoginGui {
     private void setId() {
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                id = idTextField.getText();
+                id = idTextField.getText(); //입력 텍스트 = 아이디
                 frame.dispose();
             }
         });

@@ -20,6 +20,8 @@ import javax.swing.border.Border;
 import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
+
+//게임 화면 GUI
 public class MainGui {
 	private int panelWidth = 480;
 	private int panelHeight = 370;

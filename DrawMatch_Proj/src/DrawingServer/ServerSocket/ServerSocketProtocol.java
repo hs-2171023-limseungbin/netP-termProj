@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import DrawingServer.Game.GameThread;
 
 public class ServerSocketProtocol {
+	//연결된 사용자 리스트
 	public static ArrayList<User> List;
 	
 	private int port = 0;
@@ -65,6 +66,7 @@ public class ServerSocketProtocol {
 	private void StartEvent() {
 		startBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//게임 시작 인원 조절
 				if(startCheck()) {
 					chatTextArea.append("[운영자]: 두사람 이상부터 게임시작이 가능합니다.\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());

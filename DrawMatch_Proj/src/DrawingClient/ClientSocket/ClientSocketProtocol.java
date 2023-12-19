@@ -17,14 +17,18 @@ public class ClientSocketProtocol {
 	private Socket Server;
 	private String ip = null;
 	private int port = 0;
+	
+	//메시지 스레드
 	private SendMsg Thread1;
 	private GetMsg Thread2;
+	
 	private DrawPaintManager paint;
 	private BufferedImage drawField;
 	private JTextArea textArea;
 	private JTextField answerTextField;
 	private String id = "test";
 	
+	//서버 연결 시작
 	public void start() {
 		if(ip!=null && port!=0) {
 			connectServer();
@@ -44,6 +48,8 @@ public class ClientSocketProtocol {
 			e.printStackTrace();
 		}
 	}
+	
+	//스레드 생성
 	private void makeThread() {
 		Thread1 = new SendMsg();
 		Thread2 = new GetMsg();

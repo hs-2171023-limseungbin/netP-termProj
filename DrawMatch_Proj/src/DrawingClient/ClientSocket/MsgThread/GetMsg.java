@@ -12,18 +12,19 @@ import javax.swing.JTextField;
 
 import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.Gui.DrawPaintManager;
-
+//서버로 부터 메시지를 받아 처리하는 클래스
 public class GetMsg extends Thread{
 
-	private Socket Server;
-	private BufferedReader msgbuff;
-	private String msg;
+	private Socket Server; //서버 연결 소켓
+	private BufferedReader msgbuff; // 서버 수신 메시지 서버
+	private String msg; //서버 수신 메시지
 	private DrawPaintManager paint;
 	private BufferedImage drawField;
 	private int x,y;
 	private JTextArea textArea;
 	private JTextField answerTextField;
 	
+	//스레드 시작
 	public void run() {
 		super.run();
 		makeMsgBuff();
@@ -34,6 +35,7 @@ public class GetMsg extends Thread{
 		this.Server = Server;
 	}
 	
+	//메시지 버퍼 생성
 	private void makeMsgBuff() {
 		try {
 			msgbuff = new BufferedReader(new InputStreamReader(Server.getInputStream()));
@@ -41,6 +43,8 @@ public class GetMsg extends Thread{
 			e.printStackTrace();
 		}
 	}
+	
+	//메시지 수신 및 처리
 	private void getMsg() {
 		while(true) {
 			try {
@@ -55,6 +59,7 @@ public class GetMsg extends Thread{
 						paint.setY(y);
 						paint.repaint();
 						paint.printAll(drawField.getGraphics());
+					//그리기 색상관리
 					}else if (pars[0].equals("Color")) {
 						if (pars[1].equals("BLACK"))
 							paint.setColor(Color.black);
@@ -69,9 +74,11 @@ public class GetMsg extends Thread{
 						else if (pars[1].equals("WHITE"))
 							paint.setColor(Color.white);
 					} else if (pars[0].equals("CHAT")) {
+						//채팅 메시지 출력
 						textArea.append(pars[1] + "\n");
 						textArea.setCaretPosition(textArea.getDocument().getLength());
 					} else if (pars[0].equals("JOIN")) {
+						// 참가 메시지 출력
 						textArea.append(pars[1] + " join the room.\n");
 						textArea.setCaretPosition(textArea.getDocument().getLength());
 					} else if (pars[0].equals("MODE")) {
@@ -84,6 +91,7 @@ public class GetMsg extends Thread{
 							ClientSocketProtocol.changeTurn = true;
 						}
 					} else if(pars[0].equals("ANSWER")) {
+						//정답 텍스트 필드 설정
 						answerTextField.setText(pars[1]);
 					}
 			}
@@ -91,6 +99,7 @@ public class GetMsg extends Thread{
 			e.printStackTrace();}
 		}
 	}
+	// 게임 진행을 위해 그리기 영역 초기화(지우기)
 	private void ClearDrawField() {
 		paint.setChoiceColor(false);
 		paint.repaint();

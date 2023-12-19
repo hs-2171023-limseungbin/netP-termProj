@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+//AnswerSheet.txt 를 읽는 클래스
 public class ReadAnswerSheet {
 
 	private File file;
@@ -35,6 +35,7 @@ public class ReadAnswerSheet {
 		}catch(IOException e) {
 		}
 	}
+	//정답 리스트 반환
 	public ArrayList<String> getList() {
 		return this.list;
 	}

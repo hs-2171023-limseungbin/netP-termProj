@@ -3,7 +3,7 @@ package DrawingClient.ClientSocket.MsgThread;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
+//서버로 메시지를 보내는 스레드 클래스
 public class SendMsg extends Thread{
 	private Socket Server;
 	static public PrintWriter msg;

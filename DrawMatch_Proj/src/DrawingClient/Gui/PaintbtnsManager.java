@@ -2,6 +2,7 @@ package DrawingClient.Gui;
 
 import java.awt.Color;
 
+//색상 버튼 관리(통합)
 public class PaintbtnsManager {
     private DrawPaintManager paint;
     private PaintBtnManager blackbtn;
