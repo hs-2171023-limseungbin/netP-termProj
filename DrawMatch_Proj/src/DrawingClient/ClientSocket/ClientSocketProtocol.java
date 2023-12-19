@@ -14,45 +14,38 @@ public class ClientSocketProtocol {
 	static public boolean starGame = true;
 	static public boolean changeTurn = true;
 	
-	private Socket Server;
-	private String ip = null;
-	private int port = 0;
+
+	private BufferedImage drawField;
+	private DrawPaintManager paint;
+	private JTextArea textArea;
+	private JTextField answerTextField;
 	
+	private String id = "";
+	private String ip = "";
+	private int port = 0;
+
+	private Socket Server;
+
 	//메시지 스레드
 	private SendMsg Thread1;
 	private GetMsg Thread2;
 	
-	private DrawPaintManager paint;
-	private BufferedImage drawField;
-	private JTextArea textArea;
-	private JTextField answerTextField;
-	private String id = "test";
-	
 	//서버 연결 시작
 	public void start() {
-		if(ip!=null && port!=0) {
-			connectServer();
-		}
+		if(ip != null && port != 0) {connectServer();}
 	}
-	
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-	public void setPort(int port) {
-		this.port = port;
-	}
+
 	private void connectServer() {
 		try {
 			Server = new Socket(ip,port);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		}catch(Exception e) {}
 	}
 	
 	//스레드 생성
-	private void makeThread() {
+	private void createThread() {
 		Thread1 = new SendMsg();
 		Thread2 = new GetMsg();
+		
 		Thread1.setSocket(Server);
 		Thread1.setId(id);
 		Thread2.setAnswerTextField(answerTextField);
@@ -60,6 +53,7 @@ public class ClientSocketProtocol {
 		Thread2.setPaint(paint);
 		Thread2.setTextArea(textArea);
 		Thread2.setDrawField(drawField);
+		
 		Thread1.start();
 		Thread2.start();
 	}
@@ -67,20 +61,23 @@ public class ClientSocketProtocol {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	public void setPort(int port) {
+		this.port = port;
+	}
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
 	}
-
 	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
 	}
-
-	public void setDrawField(BufferedImage drawField) {
-		this.drawField = drawField;
-		makeThread();
-	}
-
 	public void setAnswerTextField(JTextField answerTextField) {
 		this.answerTextField = answerTextField;
+	}
+	public void setDrawField(BufferedImage drawField) {
+		this.drawField = drawField;
+		createThread();
 	}
 }

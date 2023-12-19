@@ -9,26 +9,24 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String id=null;
-		String ip=null;	
 		
-		ClientSocketProtocol Socket = new ClientSocketProtocol();
 		MainGui main = new MainGui();
 		LoginGui Login = new LoginGui();
-		
+		ClientSocketProtocol Socket = new ClientSocketProtocol();
+	
 		//로그인 창 생성
 		Login.makeLoginFrame();
 		
-		//ID,IP null값
-		do {
-			id = Login.getId();
-			ip = Login.getIp();
-			System.out.println("");
-		}while(id==null || ip==null);
+		for (id = Login.getId(); id == null; id = Login.getId()) {
+		    System.out.println("");
+		}
+		
 		Socket.setIp("127.0.0.1");
 		Socket.setPort(8888);
 		Socket.setId(id);
 		
 		main.makeMainFrame();
+		
 		Socket.start();		
 		Socket.setAnswerTextField(main.getAnswerTextField());
 		Socket.setTextArea(main.getTextArea());
