@@ -23,7 +23,6 @@ public class ServerSocketProtocol {
 
 	private JButton startBtn;
 	private JTextArea chatTextArea;
-	private	JTextField joinUserField;
 	
 	public void start() {
 		if(port != 0) {
@@ -32,7 +31,7 @@ public class ServerSocketProtocol {
 			createClientSocket();
 			StartEvent();
 			acceptClient();
-		}else {System.out.println("set server port");}
+		}else {System.out.println("서버 포트를 재설정 필요");}
 	}
 	public void setPort(int port) {
 		this.port = port;
@@ -56,7 +55,6 @@ public class ServerSocketProtocol {
 				user.setSocket(Client);
 				user.createWriter();
 				thread.setUser(user);
-				thread.setJoinUserField(joinUserField);
 				thread.setChatTextArea(chatTextArea);
 				List.add(user);
 				thread.start();
@@ -69,7 +67,7 @@ public class ServerSocketProtocol {
 		startBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(startCheck()) {
-					chatTextArea.append("[에러] 두사람 이상부터 게임시작이 가능합니다.\n");
+					chatTextArea.append("[운영자]: 두사람 이상부터 게임시작이 가능합니다.\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 				}else {
 					startGame();
@@ -83,7 +81,7 @@ public class ServerSocketProtocol {
 		}else {return true;}
 	}
 	private void startGame() {
-		chatTextArea.append("운영자[서버]: 게임을 시작합니다.\n");
+		chatTextArea.append("[운영자]: 게임을 시작합니다.\n");
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 		GameThread gameThread = new GameThread();
 		gameThread.setChatTextArea(chatTextArea);
@@ -94,8 +92,5 @@ public class ServerSocketProtocol {
 	}
 	public void setStartBtn(JButton startBtn) {
 		this.startBtn = startBtn;
-	}
-	public void setJoinUserField(JTextField joinUserField) {
-		this.joinUserField = joinUserField;
 	}
 }

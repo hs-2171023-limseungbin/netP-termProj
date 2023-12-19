@@ -65,7 +65,7 @@ public class GetMsg extends Thread{
 						else if (pars[1].equals("GREEN"))
 							paint.setColor(Color.green);
 						else if (pars[1].equals("YELLOW"))
-							paint.setColor(Color.white);
+							paint.setColor(Color.yellow);
 						else if (pars[1].equals("WHITE"))
 							paint.setColor(Color.white);
 					} else if (pars[0].equals("CHAT")) {

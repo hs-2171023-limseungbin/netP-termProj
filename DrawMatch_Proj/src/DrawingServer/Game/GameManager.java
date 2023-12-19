@@ -26,7 +26,7 @@ public class GameManager {
 		turnToAnswer = true;
 		answer = "";
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("CHAT:[알림]" + id + "님 정답");
+			ServerSocketProtocol.List.get(i).sendMsg("CHAT:[SERVER] " + id + "님 정답");
 		}
 	}
 	

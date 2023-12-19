@@ -22,7 +22,7 @@ import DrawingClient.ClientSocket.MsgThread.SendMsg;
 
 public class MainGui {
 	private int panelWidth = 480;
-	private int panelHeight = 400;
+	private int panelHeight = 370;
 	private BufferedImage drawField;
 	
 	private JFrame frame;
@@ -58,14 +58,14 @@ public class MainGui {
 	private void createDrawFrame() {
 		drawField = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_4BYTE_ABGR);
 		drawLabel = new JLabel(new ImageIcon(drawField));
-		drawLabel.setBounds(10,10,panelWidth,panelHeight);
+		drawLabel.setBounds(10,80,panelWidth,panelHeight);
 		drawLabel.setBorder(BorderFactory.createLineBorder(Color.black));
 		frame.add(drawLabel);
 	}
 	
 	private void createPaint() {
 		paint = new DrawPaintManager();
-		paint.setBounds(10,10,panelWidth, panelHeight);
+		paint.setBounds(10,80,panelWidth, panelHeight);
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
 		frame.add(paint);
@@ -104,7 +104,7 @@ public class MainGui {
 		answerTextField.setEnabled(false);
 		answerTextField.setDisabledTextColor(Color.black);
 		answerTextField.setHorizontalAlignment(JTextField.CENTER);
-		answerTextField.setBounds(500,10,180,60);
+		answerTextField.setBounds(10,10,250,50);
 		frame.add(answerTextField);
 	}
 	

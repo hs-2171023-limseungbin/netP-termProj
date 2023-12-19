@@ -12,12 +12,12 @@ public class PaintbtnsManager {
     private PaintBtnManager eraserbtn;
 
     public void makeButtons() {
-        makeButton(Color.BLACK, 10, 415, 60, 40);
-        makeButton(Color.RED, 80, 415, 60, 40);
-        makeButton(Color.BLUE, 150, 415, 60, 40);
-        makeButton(Color.GREEN, 220, 415, 60, 40);
-        makeButton(Color.YELLOW, 290, 415, 60, 40);
-        makeButton(Color.WHITE, 360, 415, 60, 40); // Eraser button
+        makeButton(Color.BLACK, 270, 13, 60, 40);
+        makeButton(Color.RED, 340, 13, 60, 40);
+        makeButton(Color.BLUE, 410, 13, 60, 40);
+        makeButton(Color.GREEN, 480, 13, 60, 40);
+        makeButton(Color.YELLOW, 550, 13, 60, 40);
+        makeButton(Color.WHITE, 620, 13, 60, 40); // Eraser button
         makeClearButton();
     }
 
@@ -48,7 +48,6 @@ public class PaintbtnsManager {
     }
 
     private void makeClearButton() {
-        // Implementation for the clear button
     }
 
     private String getColorCommand(Color color) {

@@ -18,7 +18,6 @@ public class SThread extends Thread{
 	private String id;
 	
 	private JTextArea chatTextArea;
-	private	JTextField joinUserField;
 	
 	public void run() {
 		super.run();
@@ -59,7 +58,6 @@ public class SThread extends Thread{
 			}catch(IOException e) {
 				msg = "CHAT:" + id + " out the room.";
 				chatOnAllUserMsg();
-				//Client.close();
 				ServerSocketProtocol.List.remove(user);
 				fileUpdate();
 				break;
@@ -89,11 +87,10 @@ public class SThread extends Thread{
 	}
 	private void fileUpdate(){
 		String str = new String();
-		str = "접속 인원:";
+		str = "접속 인원" + "\n";
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			str += ServerSocketProtocol.List.get(i).getUserId()+" ";
+			str += ServerSocketProtocol.List.get(i).getUserId()+" \n";
 		}
-		joinUserField.setText("\n" + str + "\n");
 	}
 	private void setClient() {
 		this.Client = user.getClient();
@@ -101,9 +98,5 @@ public class SThread extends Thread{
 
 	public void setChatTextArea(JTextArea chatTextArea) {
 		this.chatTextArea = chatTextArea;
-	}
-
-	public void setJoinUserField(JTextField joinUserField) {
-		this.joinUserField = joinUserField;
 	}
 }

@@ -20,13 +20,10 @@ public class MainGui {
 	private JButton startBtn;
 	private JTextArea chatTextArea;
 	private JTextField chatTextField;
-	private	JTextField joinUserField;
-	private JScrollPane scroll;
 	
 	public void makeMainFrame() {
 		createMainFrame();
 		createStartBtn();
-		createJoinUserField();
 		createChatTextArea();
 		createChatTextField();
 		frame.repaint();
@@ -34,7 +31,8 @@ public class MainGui {
 	
 	private void createMainFrame() {
 		frame = new JFrame();
-		frame.setSize(500,500);
+		frame.setTitle("관리자 페이지");
+		frame.setSize(610,350);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
@@ -46,43 +44,33 @@ public class MainGui {
 		    }
 		});
 	}
+	
 	private void createStartBtn() {
-		startBtn = new JButton("게임 시작");
-		startBtn.setBounds(10,10,480,50);
+		startBtn = new JButton("START");
+		startBtn.setBounds(500,20,100,50);
 		frame.add(startBtn);
-	}
-	private void createJoinUserField() {
-		joinUserField = new JTextField("접속 유저");
-		//joinUserField.setText("접속유저");
-		joinUserField.setBounds(10,70,480,30);
-		joinUserField.setBorder(BorderFactory.createLineBorder(Color.black,1));
-		joinUserField.setDisabledTextColor(Color.black);
-		joinUserField.setEnabled(false);
-		frame.add(joinUserField);
 	}
 	private void createChatTextArea() {
 		chatTextArea = new JTextArea();
-		scroll = new JScrollPane(chatTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		chatTextArea.setBounds(10,110,480,250);
+		chatTextArea.setBounds(10,25,480,250);
 		chatTextArea.setBorder(BorderFactory.createLineBorder(Color.black));
 		chatTextArea.setEnabled(false);
 		chatTextArea.setDisabledTextColor(Color.black);
-		scroll.setBounds(10,110,480,250);
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
-		frame.add(scroll);
+		frame.add(chatTextArea);
 	}
 	private void createChatTextField() {
 		chatTextField = new JTextField(); 
-		chatTextField.setBounds(10,360,480,30);
+		chatTextField.setBounds(10,275,480,30);
 		chatTextField.setBorder(BorderFactory.createLineBorder(Color.black,1));
 		frame.add(chatTextField);
 		chatTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					chatTextArea.append("[운영자(서버)]" + chatTextField.getText()+"\n");
+					chatTextArea.append("운영자 >> " + chatTextField.getText()+"\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 					for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-						ServerSocketProtocol.List.get(i).sendMsg("CHAT:[운영자(서버)]" + chatTextField.getText());
+						ServerSocketProtocol.List.get(i).sendMsg("운영자 >> " + chatTextField.getText());
 					}
 					chatTextField.setText("");
 				}
@@ -96,9 +84,5 @@ public class MainGui {
 
 	public JTextArea getChatTextArea() {
 		return chatTextArea;
-	}
-
-	public JTextField getJoinUserField() {
-		return joinUserField;
 	}
 }
