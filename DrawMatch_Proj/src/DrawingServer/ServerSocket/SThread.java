@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import DrawingServer.Game.GameManager;
 
