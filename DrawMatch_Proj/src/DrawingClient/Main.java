@@ -18,7 +18,7 @@ public class Main {
 		//로그인 창 생성
 		Login.makeLoginFrame();
 		
-		//ID,IP 무입력 방지
+		//ID,IP null값
 		do {
 			id = Login.getId();
 			ip = Login.getIp();
