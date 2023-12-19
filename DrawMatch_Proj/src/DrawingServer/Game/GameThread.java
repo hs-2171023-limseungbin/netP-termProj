@@ -33,7 +33,7 @@ public class GameThread extends Thread{
 				if(GameManager.turnToAnswer == true) {break;}
 				else {
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(300);
 					}catch(InterruptedException e){}
 				}
 			}

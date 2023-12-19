@@ -11,6 +11,7 @@ public class GameManager {
 	static public void startGame() {
 		for (int i = 0; i < ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).sendMsg("CHAT:[SERVER] " + "게임을 시작합니다.");
+			ServerSocketProtocol.List.get(i).sendMsg("CHAT:[SERVER] " + "제한시간은 30초입니다!");
 			ServerSocketProtocol.List.get(i).sendMsg("SET:FALSE");
 			ServerSocketProtocol.List.get(i).sendMsg("MODE:CLEAR");
 		}
