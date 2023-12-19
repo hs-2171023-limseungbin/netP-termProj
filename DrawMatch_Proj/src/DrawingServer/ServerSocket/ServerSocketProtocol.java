@@ -1,6 +1,7 @@
 package DrawingServer.ServerSocket;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import DrawingServer.Game.GameThread;
 
