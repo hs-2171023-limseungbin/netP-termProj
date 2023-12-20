@@ -58,7 +58,7 @@ public class MainGui {
 	}
 	private void createChatTextField() {
 		chatTextField = new JTextField(); 
-		chatTextField.setBounds(10,275,480,30);
+		chatTextField.setBounds(10,275,325,30);
 		frame.add(chatTextField);
 		chatTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
