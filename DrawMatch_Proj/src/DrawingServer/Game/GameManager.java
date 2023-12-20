@@ -10,18 +10,18 @@ public class GameManager {
 	
 	static public void startGame() {
 		for (int i = 0; i < ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:게임 시작");
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:제한시간은 30초입니다!");
-			ServerSocketProtocol.List.get(i).sendMsg("Setting:false");
-			ServerSocketProtocol.List.get(i).sendMsg("Mode:Repaint");
+			ServerSocketProtocol.List.get(i).outputMessage("Chatting:게임 시작");
+			ServerSocketProtocol.List.get(i).outputMessage("Chatting:제한시간은 30초입니다!");
+			ServerSocketProtocol.List.get(i).outputMessage("Setting:false");
+			ServerSocketProtocol.List.get(i).outputMessage("Mode:Repaint");
 		}
 	}
 	
 	//모든 사용자가 시간내에 정답을 맞추지 못했을 때 화면을 지우고 다음 차례로 넘김
 	static public void allFailed() {
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Setting:false");
-			ServerSocketProtocol.List.get(i).sendMsg("Mode:Repaint");
+			ServerSocketProtocol.List.get(i).outputMessage("Setting:false");
+			ServerSocketProtocol.List.get(i).outputMessage("Mode:Repaint");
 		}
 	}
 	
@@ -30,14 +30,14 @@ public class GameManager {
 		turnToAnswer = true;
 		answer = "";
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:" + id + "님 정답");
+			ServerSocketProtocol.List.get(i).outputMessage("Chatting:" + id + "님 정답");
 		}
 	}
 	
 	//입장한 모든 사람에게 메시지를 전송하는 메서드
 	static public void ChatOnAllUser(String msg) {
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg(msg);
+			ServerSocketProtocol.List.get(i).outputMessage(msg);
 		}
 	}
 }

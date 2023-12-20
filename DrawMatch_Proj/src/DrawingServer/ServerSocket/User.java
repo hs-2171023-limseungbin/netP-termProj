@@ -6,23 +6,23 @@ import java.net.Socket;
 
 public class User {
 	private Socket client;
-	private PrintWriter msg;
+	private PrintWriter out;
 	private String id;
 	
 	public void setSocket(Socket client) {
 		this.client = client;
 	}
 	
-	public void createWriter() {
+	public void PrintWriter() {
 		try {
-			msg = new PrintWriter(client.getOutputStream());
+			out = new PrintWriter(client.getOutputStream());
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public void sendMsg(String message) {
-		msg.println(message);
-		msg.flush();
+	public void outputMessage(String message) {
+		out.println(message);
+		out.flush();
 	}
 	public Socket getClient() {
 		return this.client;

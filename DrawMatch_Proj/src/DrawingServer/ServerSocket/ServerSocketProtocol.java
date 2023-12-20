@@ -16,42 +16,43 @@ public class ServerSocketProtocol {
 	//연결된 사용자 리스트
 	public static ArrayList<User> List;
 	
+	private User user;
 	private int port = 8888;
+	
 	private ServerSocket Server;
 	private Socket Client;
-	private User user;
 
 	private JButton startBtn;
 	private JTextArea chatTextArea;
 	
 	public void start() {
 		List = new ArrayList<User>();
-		createServerSocket();
-		createClientSocket();
-		StartEvent();
-		acceptClient();
+		ServerSocket();
+		ClientSocket();
+		startMethod();
+		confirmAdmission();
 	}
 	public void setPort(int port) {
 		this.port = 8888;
 	}
-	private void createServerSocket() {
+	private void ServerSocket() {
 		try {
 			Server = new ServerSocket(port);
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
-	private void createClientSocket() {
+	private void ClientSocket() {
 		Client = new Socket();
 	}
-	private void acceptClient() {
+	private void confirmAdmission() {
 		while(true) {
 			try {
 				Client = Server.accept();
 				SThread thread = new SThread();
 				user = new User();
 				user.setSocket(Client);
-				user.createWriter();
+				user.PrintWriter();
 				thread.setUser(user);
 				thread.setChatTextArea(chatTextArea);
 				List.add(user);
@@ -61,26 +62,24 @@ public class ServerSocketProtocol {
 			}
 		}
 	}
-	private void StartEvent() {
+	private void startMethod() {
 		startBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//게임 시작 인원 조절
-				if(startCheck()) {
-					chatTextArea.append("[운영자]: 두사람 이상부터 게임시작이 가능합니다.\n");
+				if(checkUserNum()) {
+					chatTextArea.append("[운영자]: 인원부족(인원이 2명 이하입니다.)\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
-				}else {
-					startGame();
-				}
+				}else {startGame();}
 			}
 		});
 	}
-	private boolean startCheck() {
+	private boolean checkUserNum() {
 		if(List.size() > 1) {
 			return false;
 		}else {return true;}
 	}
 	private void startGame() {
-		chatTextArea.append("[운영자]: 게임을 시작합니다.\n");
+		chatTextArea.append("[운영자]: 게임 시작.\n");
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 		GameThread gameThread = new GameThread();
 		gameThread.setChatTextArea(chatTextArea);
