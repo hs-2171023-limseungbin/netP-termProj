@@ -47,7 +47,8 @@ public class MainGui {
 	
 	private void createMainFrame() {
 		frame = new JFrame();
-		frame.setSize(700, 500);
+		frame.setTitle("DrawMatch");
+		frame.setSize(700, 460);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -60,14 +61,14 @@ public class MainGui {
 	}
 	
 	private void createDrawFrame() {
-		drawField = new BufferedImage(480, 370, BufferedImage.TYPE_3BYTE_BGR);
+		drawField = new BufferedImage(480, 320, BufferedImage.TYPE_3BYTE_BGR);
 		drawLabel = new JLabel(new ImageIcon(drawField));
-		drawLabel.setBounds(10,80,480,370);
+		drawLabel.setBounds(10,80,480,320);
 		frame.add(drawLabel);
 	}
 	private void createPaint() {
 		paint = new DrawPaintManager();
-		paint.setBounds(10,80,480, 370);
+		paint.setBounds(10,80,480,320);
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
 		frame.add(paint);
@@ -108,7 +109,7 @@ public class MainGui {
 	
 	private void createPaintInputTextField() {
 		inputTextField = new JTextField();
-		inputTextField.setBounds(500,430,180,20);
+		inputTextField.setBounds(10,405,480,20);
 		inputTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
