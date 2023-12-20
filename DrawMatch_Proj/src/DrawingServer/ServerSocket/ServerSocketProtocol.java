@@ -16,7 +16,7 @@ public class ServerSocketProtocol {
 	//연결된 사용자 리스트
 	public static ArrayList<User> List;
 	
-	private int port = 0;
+	private int port = 8888;
 	private ServerSocket Server;
 	private Socket Client;
 	private User user;
@@ -25,16 +25,14 @@ public class ServerSocketProtocol {
 	private JTextArea chatTextArea;
 	
 	public void start() {
-		if(port != 0) {
-			List = new ArrayList<User>();
-			createServerSocket();
-			createClientSocket();
-			StartEvent();
-			acceptClient();
-		}else {System.out.println("서버 포트를 재설정 필요");}
+		List = new ArrayList<User>();
+		createServerSocket();
+		createClientSocket();
+		StartEvent();
+		acceptClient();
 	}
 	public void setPort(int port) {
-		this.port = port;
+		this.port = 8888;
 	}
 	private void createServerSocket() {
 		try {

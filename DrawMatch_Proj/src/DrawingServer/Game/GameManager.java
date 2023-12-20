@@ -8,12 +8,11 @@ public class GameManager {
 	static public boolean turnToGame = false; //정답을 내는 차례 판단
 	static public String Id;
 	
-
 	static public void startGame() {
 		for (int i = 0; i < ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:[SERVER] " + "게임을 시작합니다.");
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:[SERVER] " + "제한시간은 30초입니다!");
-			ServerSocketProtocol.List.get(i).sendMsg("Setting:FALSE");
+			ServerSocketProtocol.List.get(i).sendMsg("Chatting:게임 시작");
+			ServerSocketProtocol.List.get(i).sendMsg("Chatting:제한시간은 30초입니다!");
+			ServerSocketProtocol.List.get(i).sendMsg("Setting:false");
 			ServerSocketProtocol.List.get(i).sendMsg("Mode:Repaint");
 		}
 	}
@@ -21,7 +20,7 @@ public class GameManager {
 	//모든 사용자가 시간내에 정답을 맞추지 못했을 때 화면을 지우고 다음 차례로 넘김
 	static public void allFailed() {
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Setting:FALSE");
+			ServerSocketProtocol.List.get(i).sendMsg("Setting:false");
 			ServerSocketProtocol.List.get(i).sendMsg("Mode:Repaint");
 		}
 	}
@@ -31,7 +30,7 @@ public class GameManager {
 		turnToAnswer = true;
 		answer = "";
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("Chatting:[SERVER] " + id + "님 정답");
+			ServerSocketProtocol.List.get(i).sendMsg("Chatting:" + id + "님 정답");
 		}
 	}
 	

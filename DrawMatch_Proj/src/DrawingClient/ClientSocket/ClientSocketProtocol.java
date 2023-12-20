@@ -18,7 +18,6 @@ public class ClientSocketProtocol {
 	private BufferedImage drawField;
 	private DrawPaintManager paint;
 	private JTextArea textArea;
-	private JTextField answerTextField;
 	
 	private String id = "";
 	private String ip = "";
@@ -48,7 +47,6 @@ public class ClientSocketProtocol {
 		
 		Thread1.setSocket(Server);
 		Thread1.setId(id);
-		Thread2.setAnswerTextField(answerTextField);
 		Thread2.setSocket(Server);
 		Thread2.setPaint(paint);
 		Thread2.setTextArea(textArea);
@@ -72,9 +70,6 @@ public class ClientSocketProtocol {
 	}
 	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
-	}
-	public void setAnswerTextField(JTextField answerTextField) {
-		this.answerTextField = answerTextField;
 	}
 	public void setDrawField(BufferedImage drawField) {
 		this.drawField = drawField;

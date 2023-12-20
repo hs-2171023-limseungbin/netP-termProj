@@ -31,8 +31,7 @@ public class MainGui {
 	private void createMainFrame() {
 		frame = new JFrame();
 		frame.setTitle("관리자 페이지");
-		frame.setSize(610,350);
-		frame.setLocationRelativeTo(null);
+		frame.setSize(350,380);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(true);
@@ -46,13 +45,12 @@ public class MainGui {
 	
 	private void createStartBtn() {
 		startBtn = new JButton("START");
-		startBtn.setBounds(500,20,100,50);
+		startBtn.setBounds(30,310,300,30);
 		frame.add(startBtn);
 	}
 	private void createChatTextArea() {
 		chatTextArea = new JTextArea();
-		chatTextArea.setBounds(10,25,480,250);
-		chatTextArea.setBorder(BorderFactory.createLineBorder(Color.black));
+		chatTextArea.setBounds(10,25,325,250);
 		chatTextArea.setEnabled(false);
 		chatTextArea.setDisabledTextColor(Color.black);
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
@@ -61,7 +59,6 @@ public class MainGui {
 	private void createChatTextField() {
 		chatTextField = new JTextField(); 
 		chatTextField.setBounds(10,275,480,30);
-		chatTextField.setBorder(BorderFactory.createLineBorder(Color.black,1));
 		frame.add(chatTextField);
 		chatTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
@@ -69,7 +66,7 @@ public class MainGui {
 					chatTextArea.append("운영자 >> " + chatTextField.getText()+"\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 					for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-						ServerSocketProtocol.List.get(i).sendMsg("Chatting:운영자 >> " + chatTextField.getText());
+						ServerSocketProtocol.List.get(i).sendMsg("Chatting:[운영자] " + chatTextField.getText());
 					}
 					chatTextField.setText("");
 				}

@@ -22,7 +22,6 @@ public class InputMessage extends Thread{
 	private BufferedReader in; // 서버 수신 메시지 서버
 	
 	private JTextArea textArea;
-	private JTextField answerTextField;
 	private DrawPaintManager paint;
 	private BufferedImage drawField;
 	
@@ -64,7 +63,7 @@ public class InputMessage extends Thread{
 						paint.repaint();
 						paint.printAll(drawField.getGraphics());
 					//그리기 색상관리
-					}else if (args[0].equals("Color")) {
+					}else if (args[0].equals("COLOR")) {
 						if (args[1].equals("BLACK")){paint.setColor(Color.black);}
 						else if (args[1].equals("BLUE")){paint.setColor(Color.blue);}
 						else if (args[1].equals("RED")){paint.setColor(Color.red);}
@@ -87,9 +86,6 @@ public class InputMessage extends Thread{
 						} else if(args[1].equals("True")) {
 							ClientSocketProtocol.changeTurn = true;
 						}
-					} else if(args[0].equals("Correct")) {
-						//정답 텍스트 필드 설정
-						answerTextField.setText(args[1]);
 					}
 			}
 		}catch(IOException e) {
@@ -104,10 +100,6 @@ public class InputMessage extends Thread{
 		paint.printAll(drawField.getGraphics());
 	}
 	
-	
-	public void setAnswerTextField(JTextField answerTextField) {
-		this.answerTextField = answerTextField;
-	}
 	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
 	}

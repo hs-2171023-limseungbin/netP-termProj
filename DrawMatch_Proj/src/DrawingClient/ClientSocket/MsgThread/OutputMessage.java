@@ -14,7 +14,6 @@ public class OutputMessage extends Thread{
 		CreateOutputMessage();
 		OutputId();
 	}
-	
 	public void setId(String id) {
 		this.id = id;
 	}

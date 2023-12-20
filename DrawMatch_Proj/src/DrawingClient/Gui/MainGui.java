@@ -6,6 +6,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
@@ -30,7 +32,6 @@ public class MainGui {
 	private JFrame frame;
 	private JLabel drawLabel;
 	private JTextField inputTextField;
-	private JTextField answerTextField;
 	private JTextArea textArea;
 	
 	public void makeMainFrame() {
@@ -39,7 +40,6 @@ public class MainGui {
 		createPaint();
 		createMouseEvent();
 		createPaintBtns();
-		createAnswerFrame();
 		createPaintTextArea();
 		createPaintInputTextField();
 		frame.repaint();
@@ -51,6 +51,12 @@ public class MainGui {
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent windowEvent) {
+		        System.exit(0);
+		    }
+		});
 	}
 	
 	private void createDrawFrame() {
@@ -90,19 +96,10 @@ public class MainGui {
 		frame.add(btn.getYellowbtn());
 		frame.add(btn.getEraserbtn());
 	}
-	
-	private void createAnswerFrame() {
-		answerTextField = new JTextField();
-		answerTextField.setEnabled(false);
-		answerTextField.setDisabledTextColor(Color.black);
-		answerTextField.setHorizontalAlignment(JTextField.CENTER);
-		answerTextField.setBounds(10,10,250,50);
-		frame.add(answerTextField);
-	}
-	
+		
 	private void createPaintTextArea() {
 		textArea = new JTextArea();
-		textArea.setBounds(500,80,180,350);
+		textArea.setBounds(500,20,180,400);
 		textArea.setEnabled(false);
 		textArea.setDisabledTextColor(Color.black);
 		textArea.setCaretPosition(textArea.getDocument().getLength());
@@ -124,9 +121,6 @@ public class MainGui {
 		frame.add(inputTextField);
 	}
 	
-	public JTextField getAnswerTextField() {
-		return answerTextField;
-	}
 	public BufferedImage getDrawField() {
 		return drawField;
 	}

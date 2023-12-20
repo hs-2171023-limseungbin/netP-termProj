@@ -15,21 +15,21 @@ public class ReadAnswerSheet {
 	
 	public void read() {
 		createList();
-		fileRead();
+		Read();
 	}
 	private void createList() {
 		list = new ArrayList<String>();
 	}
-	private void fileRead() {
+	private void Read() {
 		try {
 			file = new File(directory);
-			FileReader reader = new FileReader(file);
-			BufferedReader bufferedReader = new BufferedReader(reader);
+			FileReader read = new FileReader(file);
+			BufferedReader in = new BufferedReader(read);
 			String line = "";
-			while((line = bufferedReader.readLine()) != null) {
+			while((line = in.readLine()) != null) {
 				list.add(line);
 			}
-			bufferedReader.close();
+			in.close();
 		}catch(FileNotFoundException e) {
 			System.out.println("파일을 찾을 수 없습니다.");
 		}catch(IOException e) {

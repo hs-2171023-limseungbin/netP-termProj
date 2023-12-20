@@ -13,12 +13,12 @@ public class PaintbtnsManager {
     private PaintBtnManager eraserbtn;
     
     public void makeButtons() {
-        makeButton(Color.BLACK, 270, 13, 60, 50);
-        makeButton(Color.RED, 340, 13, 60, 50);
-        makeButton(Color.BLUE, 410, 13, 60, 50);
-        makeButton(Color.GREEN, 480, 13, 60, 50);
-        makeButton(Color.YELLOW, 550, 13, 60, 50);
-        makeButton(Color.WHITE, 620, 13, 60, 50);
+        makeButton(Color.BLACK, 20, 13, 60, 50);
+        makeButton(Color.RED, 100, 13, 60, 50);
+        makeButton(Color.BLUE, 180, 13, 60, 50);
+        makeButton(Color.GREEN, 260, 13, 60, 50);
+        makeButton(Color.YELLOW, 340, 13, 60, 50);
+        makeButton(Color.WHITE, 420, 13, 60, 50);
     }
 
     private void makeButton(Color color, int x, int y, int width, int height) {

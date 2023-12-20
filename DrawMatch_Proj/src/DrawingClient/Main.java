@@ -28,7 +28,6 @@ public class Main {
 		main.makeMainFrame();
 		
 		Socket.start();		
-		Socket.setAnswerTextField(main.getAnswerTextField());
 		Socket.setTextArea(main.getTextArea());
 		Socket.setPaint(main.getPaint());
 		Socket.setDrawField(main.getDrawField());

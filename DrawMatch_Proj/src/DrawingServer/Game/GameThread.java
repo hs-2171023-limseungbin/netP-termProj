@@ -17,7 +17,7 @@ public class GameThread extends Thread{
 		game.start();
 		GameManager.startGame();
 		
-		while(game.moreAnswer()) {
+		while(game.nextAnswer()) {
 			answer = game.getAnswer();
 			
 			GameManager.answer = answer;
@@ -26,24 +26,25 @@ public class GameThread extends Thread{
 			GameManager.turnToAnswer = false;
 			
 			GameManager.Id = ServerSocketProtocol.List.get(index).getUserId();
-			GameManager.ChatOnAllUser("[운영자]>"+GameManager.Id+"님의 차례입니다.");
+			GameManager.ChatOnAllUser(GameManager.Id+"님의 차례입니다.");
 			
-			chatTextArea.append("[운영자]>"+ GameManager.Id+ "님의 차례입니다.\n");
+			chatTextArea.append(GameManager.Id+ "님의 차례입니다.\n");
 			
-			ServerSocketProtocol.List.get(index).sendMsg("Setting:TRUE");
-			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "당신의 차례입니다.");
-			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "정답은 "+ answer + "입니다.");
-			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "정답을 잘 설명해보세요");
-			ServerSocketProtocol.List.get(index).sendMsg("Answer:"+ answer);
+			ServerSocketProtocol.List.get(index).sendMsg("Setting:True");
+			ServerSocketProtocol.List.get(index).sendMsg("Chatting:당신의 차례입니다.");
+			ServerSocketProtocol.List.get(index).sendMsg("Chatting:정답은 "+ answer + "입니다.");
+			ServerSocketProtocol.List.get(index).sendMsg("Correct:"+ answer);
 			while(true) {
 				if(GameManager.turnToAnswer == true) {break;}
 				else {
 					try {
 						Thread.sleep(300);
-					}catch(InterruptedException e){}
+					}catch(InterruptedException e){
+						System.out.println("[에러] 발생");
+					}
 				}
 			}
-			ServerSocketProtocol.List.get(index).sendMsg("Answer:"+ " ");
+			ServerSocketProtocol.List.get(index).sendMsg("Correct:"+ " ");
 			GameManager.allFailed();
 			++index;
 			if(index == ServerSocketProtocol.List.size()) {index = 0;}

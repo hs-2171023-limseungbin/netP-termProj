@@ -25,7 +25,7 @@ public class PaintBtnManager extends JButton {
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	// 유저 차례에 색상 변경 가능
-                if (ClientSocketProtocol.changeTurn) {
+                if (ClientSocketProtocol.changeTurn == true) {
                 	//색상변경(서버 전송)
                     OutputMessage.msg.println("Color:" + getColorCommand(color));
                     OutputMessage.msg.flush();
@@ -49,7 +49,7 @@ public class PaintBtnManager extends JButton {
         } else if (color.equals(Color.WHITE)) {
             return "ERASER";
         } else {
-            return "ERASE";
+            return "ERASER";
         }
     }
 
