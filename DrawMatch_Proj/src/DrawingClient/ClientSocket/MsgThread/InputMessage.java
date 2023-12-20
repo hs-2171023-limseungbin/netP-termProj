@@ -13,21 +13,24 @@ import javax.swing.JTextField;
 import DrawingClient.ClientSocket.ClientSocketProtocol;
 import DrawingClient.Gui.DrawPaintManager;
 //서버로 부터 메시지를 받아 처리하는 클래스
-public class GetMsg extends Thread{
+public class InputMessage extends Thread{
 
-	private Socket Server; //서버 연결 소켓
-	private BufferedReader msgbuff; // 서버 수신 메시지 서버
-	private String msg; //서버 수신 메시지
-	private DrawPaintManager paint;
-	private BufferedImage drawField;
 	private int x,y;
+	private String msg; //서버 수신 메시지
+	
+	private Socket Server; //서버 연결 소켓
+	private BufferedReader in; // 서버 수신 메시지 서버
+	
 	private JTextArea textArea;
 	private JTextField answerTextField;
+	private DrawPaintManager paint;
+	private BufferedImage drawField;
 	
 	//스레드 시작
+	@Override
 	public void run() {
 		super.run();
-		makeMsgBuff();
+		CreateInputMessage();
 		getMsg();
 	}
 	
@@ -36,9 +39,9 @@ public class GetMsg extends Thread{
 	}
 	
 	//메시지 버퍼 생성
-	private void makeMsgBuff() {
+	private void CreateInputMessage() {
 		try {
-			msgbuff = new BufferedReader(new InputStreamReader(Server.getInputStream()));
+			in = new BufferedReader(new InputStreamReader(Server.getInputStream()));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +51,7 @@ public class GetMsg extends Thread{
 	private void getMsg() {
 		while(true) {
 			try {
-				msg = msgbuff.readLine();
+				msg = in.readLine();
 				if(msg.contains(":")) {
 					String[] pars = msg.split(":");
 					if(pars[0].equals("Position")) {

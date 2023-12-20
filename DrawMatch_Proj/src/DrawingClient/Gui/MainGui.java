@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import DrawingClient.ClientSocket.ClientSocketProtocol;
-import DrawingClient.ClientSocket.MsgThread.SendMsg;
+import DrawingClient.ClientSocket.MsgThread.OutputMessage;
 
 
 //게임 화면 GUI
@@ -77,8 +77,8 @@ public class MainGui {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
 				if(ClientSocketProtocol.changeTurn == true) {
-					SendMsg.msg.println("Position:"+e.getX()+","+e.getY());
-					SendMsg.msg.flush();
+					OutputMessage.msg.println("Position:"+e.getX()+","+e.getY());
+					OutputMessage.msg.flush();
 				}
 			}
 			
@@ -130,8 +130,8 @@ public class MainGui {
 		inputTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					SendMsg.msg.println("CHAT:" + inputTextField.getText());
-					SendMsg.msg.flush();
+					OutputMessage.msg.println("CHAT:" + inputTextField.getText());
+					OutputMessage.msg.flush();
 					inputTextField.setText("");
 				}
 			}

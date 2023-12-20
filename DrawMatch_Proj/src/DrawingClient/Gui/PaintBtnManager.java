@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import DrawingClient.ClientSocket.ClientSocketProtocol;
-import DrawingClient.ClientSocket.MsgThread.SendMsg;
+import DrawingClient.ClientSocket.MsgThread.OutputMessage;
 
 //색상 버튼 관리(단일)
 public class PaintBtnManager extends JButton {
@@ -27,8 +27,8 @@ public class PaintBtnManager extends JButton {
             	// 유저 차례에 색상 변경 가능
                 if (ClientSocketProtocol.changeTurn) {
                 	//색상변경(서버 전송)
-                    SendMsg.msg.println("Color:" + getColorCommand(color));
-                    SendMsg.msg.flush();
+                    OutputMessage.msg.println("Color:" + getColorCommand(color));
+                    OutputMessage.msg.flush();
                     paint.setColor(color);
                 }
             }

@@ -6,8 +6,8 @@ import java.net.Socket;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import DrawingClient.ClientSocket.MsgThread.GetMsg;
-import DrawingClient.ClientSocket.MsgThread.SendMsg;
+import DrawingClient.ClientSocket.MsgThread.InputMessage;
+import DrawingClient.ClientSocket.MsgThread.OutputMessage;
 import DrawingClient.Gui.DrawPaintManager;
 
 public class ClientSocketProtocol {
@@ -27,8 +27,8 @@ public class ClientSocketProtocol {
 	private Socket Server;
 
 	//메시지 스레드
-	private SendMsg Thread1;
-	private GetMsg Thread2;
+	private OutputMessage Thread1;
+	private InputMessage Thread2;
 	
 	//서버 연결 시작
 	public void start() {
@@ -43,8 +43,8 @@ public class ClientSocketProtocol {
 	
 	//스레드 생성
 	private void createThread() {
-		Thread1 = new SendMsg();
-		Thread2 = new GetMsg();
+		Thread1 = new OutputMessage();
+		Thread2 = new InputMessage();
 		
 		Thread1.setSocket(Server);
 		Thread1.setId(id);
