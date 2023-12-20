@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import javax.swing.JTextArea;
+
 import DrawingServer.Game.GameManager;
 
 //각 클라이언트로부터 메시지를 받은 스레드 클래스
@@ -14,8 +14,6 @@ public class OutputMessage extends Thread {
 	private BufferedReader in;
 	private String msg;
 	private String id;
-
-	private JTextArea chatTextArea;
 
 	public void run() {
 		super.run();
@@ -63,10 +61,8 @@ public class OutputMessage extends Thread {
 				}
 				chatOnAllUserMsg();
 			} catch (IOException e) {
-				msg = "Chatting:" + id + " 퇴장하셨습니다.";
-				chatOnAllUserMsg();
-				Client.close();
 				ServerSocketProtocol.List.remove(user);
+				Client.close();
 				break;
 			}
 		}
@@ -76,7 +72,6 @@ public class OutputMessage extends Thread {
 		try {
 			id = in.readLine();
 			user.setUserId(id);
-			chatTextArea.append(id + "님이 입장하셨습니다.\n");
 		} catch (IOException e) {
 			System.out.println("[에러발생]");
 		}
@@ -90,18 +85,9 @@ public class OutputMessage extends Thread {
 		for (int i = 0; i < ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).outputMessage(msg);
 		}
-		if (msg.contains("Chatting:")) {
-			String args[] = msg.split(":");
-			chatTextArea.append(args[1] + "\n");
-			chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
-		}
 	}
 
 	private void setClient() {
 		this.Client = user.getClient();
-	}
-
-	public void setChatTextArea(JTextArea chatTextArea) {
-		this.chatTextArea = chatTextArea;
 	}
 }

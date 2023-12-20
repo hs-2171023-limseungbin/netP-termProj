@@ -1,11 +1,9 @@
 package DrawingServer.Game;
 
-import javax.swing.JTextArea;
-
 import DrawingServer.ServerSocket.ServerSocketProtocol;
 
 public class GameSequence extends Thread{
-	private JTextArea chatTextArea;
+	//private JTextArea chatTextArea;
 	
 	@Override
 	public void run() {
@@ -28,8 +26,6 @@ public class GameSequence extends Thread{
 			GameManager.Id = ServerSocketProtocol.List.get(index).getUserId();
 			GameManager.userAnnouncement(GameManager.Id+"님의 차례입니다.");
 			
-			chatTextArea.append(GameManager.Id+ "님의 차례입니다.\n");
-			
 			ServerSocketProtocol.List.get(index).outputMessage("Setting:True");
 			ServerSocketProtocol.List.get(index).outputMessage("Chatting:당신의 차례입니다.");
 			ServerSocketProtocol.List.get(index).outputMessage("Chatting:정답은 "+ answer + "입니다.");
@@ -49,8 +45,5 @@ public class GameSequence extends Thread{
 			++index;
 			if(index == ServerSocketProtocol.List.size()) {index = 0;}
 		}
-	}
-	public void setChatTextArea(JTextArea chatTextArea) {
-		this.chatTextArea = chatTextArea;
 	}
 }

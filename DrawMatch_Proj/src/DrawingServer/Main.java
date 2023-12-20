@@ -13,7 +13,6 @@ public class Main {
 		main.makeMainFrame();
 		
 		server.setStartBtn(main.getStartBtn());
-		server.setChatTextArea(main.getChatTextArea());
 		server.setPort(8888);
 		server.start();
 	}

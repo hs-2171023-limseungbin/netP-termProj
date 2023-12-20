@@ -23,7 +23,6 @@ public class ServerSocketProtocol {
 	private Socket Client;
 
 	private JButton startBtn;
-	private JTextArea chatTextArea;
 	
 	public void start() {
 		List = new ArrayList<User>();
@@ -54,7 +53,6 @@ public class ServerSocketProtocol {
 				user.setSocket(Client);
 				user.PrintWriter();
 				thread.setUser(user);
-				thread.setChatTextArea(chatTextArea);
 				List.add(user);
 				thread.start();
 			}catch(IOException e) {
@@ -67,8 +65,6 @@ public class ServerSocketProtocol {
 			public void actionPerformed(ActionEvent e) {
 				//게임 시작 인원 조절
 				if(checkUserNum()) {
-					chatTextArea.append("[운영자]:참여 인원수를 확인하세요\n");
-					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 				}else {startGame();}
 			}
 		});
@@ -79,14 +75,8 @@ public class ServerSocketProtocol {
 		}else {return true;}
 	}
 	private void startGame() {
-		chatTextArea.append("게임 시작.\n");
-		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 		GameSequence gameThread = new GameSequence();
-		gameThread.setChatTextArea(chatTextArea);
 		gameThread.start();
-	}
-	public void setChatTextArea(JTextArea chatTextArea) {
-		this.chatTextArea = chatTextArea;
 	}
 	public void setStartBtn(JButton startBtn) {
 		this.startBtn = startBtn;
