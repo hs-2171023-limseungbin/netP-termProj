@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-import DrawingServer.Game.GameThread;
+import DrawingServer.Game.GameSequence;
 
 public class ServerSocketProtocol {
 	//연결된 사용자 리스트
@@ -49,7 +49,7 @@ public class ServerSocketProtocol {
 		while(true) {
 			try {
 				Client = Server.accept();
-				SThread thread = new SThread();
+				OutputMessage thread = new OutputMessage();
 				user = new User();
 				user.setSocket(Client);
 				user.PrintWriter();
@@ -81,7 +81,7 @@ public class ServerSocketProtocol {
 	private void startGame() {
 		chatTextArea.append("게임 시작.\n");
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
-		GameThread gameThread = new GameThread();
+		GameSequence gameThread = new GameSequence();
 		gameThread.setChatTextArea(chatTextArea);
 		gameThread.start();
 	}

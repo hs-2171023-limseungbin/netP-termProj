@@ -8,7 +8,7 @@ import javax.swing.JTextArea;
 import DrawingServer.Game.GameManager;
 
 //각 클라이언트로부터 메시지를 받은 스레드 클래스
-public class SThread extends Thread {
+public class OutputMessage extends Thread {
 	private User user;
 	private Socket Client;
 	private BufferedReader in;

@@ -4,7 +4,7 @@ import javax.swing.JTextArea;
 
 import DrawingServer.ServerSocket.ServerSocketProtocol;
 
-public class GameThread extends Thread{
+public class GameSequence extends Thread{
 	private JTextArea chatTextArea;
 	
 	@Override
