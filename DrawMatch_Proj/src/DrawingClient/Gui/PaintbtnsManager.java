@@ -11,15 +11,14 @@ public class PaintbtnsManager {
     private PaintBtnManager greenbtn;
     private PaintBtnManager yellowbtn;
     private PaintBtnManager eraserbtn;
-
+    
     public void makeButtons() {
-        makeButton(Color.BLACK, 270, 13, 60, 40);
-        makeButton(Color.RED, 340, 13, 60, 40);
-        makeButton(Color.BLUE, 410, 13, 60, 40);
-        makeButton(Color.GREEN, 480, 13, 60, 40);
-        makeButton(Color.YELLOW, 550, 13, 60, 40);
-        makeButton(Color.WHITE, 620, 13, 60, 40); // Eraser button
-        makeClearButton();
+        makeButton(Color.BLACK, 270, 13, 60, 50);
+        makeButton(Color.RED, 340, 13, 60, 50);
+        makeButton(Color.BLUE, 410, 13, 60, 50);
+        makeButton(Color.GREEN, 480, 13, 60, 50);
+        makeButton(Color.YELLOW, 550, 13, 60, 50);
+        makeButton(Color.WHITE, 620, 13, 60, 50);
     }
 
     private void makeButton(Color color, int x, int y, int width, int height) {
@@ -48,9 +47,6 @@ public class PaintbtnsManager {
         }
     }
 
-    private void makeClearButton() {
-    }
-
     private String getColorCommand(Color color) {
         if (color.equals(Color.BLACK)) {
             return "BLACK";
@@ -65,8 +61,7 @@ public class PaintbtnsManager {
         } else if (color.equals(Color.WHITE)) {
             return "ERASER";
         } else {
-            // Handle other colors or return a default command
-            return "DEFAULT";
+            return "WHITE";
         }
     }
 

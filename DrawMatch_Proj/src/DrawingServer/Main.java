@@ -9,7 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		ServerSocketProtocol server = new ServerSocketProtocol();
 		MainGui main = new MainGui();
-		
+
 		main.makeMainFrame();
 		server.setStartBtn(main.getStartBtn());
 		server.setChatTextArea(main.getChatTextArea());

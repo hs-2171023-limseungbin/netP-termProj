@@ -20,7 +20,7 @@ public class PaintBtnManager extends JButton {
         setBackground(color);
         makeEvent(color);
     }
-
+    
     private void makeEvent(final Color color) {
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -49,7 +49,7 @@ public class PaintBtnManager extends JButton {
         } else if (color.equals(Color.WHITE)) {
             return "ERASER";
         } else {
-            return "BLACK";
+            return "ERASE";
         }
     }
 
