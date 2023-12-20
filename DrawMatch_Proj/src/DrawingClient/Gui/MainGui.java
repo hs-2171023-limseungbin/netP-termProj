@@ -23,15 +23,12 @@ import DrawingClient.ClientSocket.MsgThread.OutputMessage;
 
 //게임 화면 GUI
 public class MainGui {
-	private int panelWidth = 480;
-	private int panelHeight = 370;
 	private BufferedImage drawField;
-	
-	private JFrame frame;
-	private JLabel drawLabel;
 	private PaintbtnsManager btn;
 	private DrawPaintManager paint;
 	
+	private JFrame frame;
+	private JLabel drawLabel;
 	private JTextField inputTextField;
 	private JTextField answerTextField;
 	private JTextArea textArea;
@@ -52,22 +49,19 @@ public class MainGui {
 		frame = new JFrame();
 		frame.setSize(700, 500);
 		frame.setLayout(null);
-		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
 	
 	private void createDrawFrame() {
-		drawField = new BufferedImage(panelWidth, panelHeight, BufferedImage.TYPE_4BYTE_ABGR);
+		drawField = new BufferedImage(480, 370, BufferedImage.TYPE_3BYTE_BGR);
 		drawLabel = new JLabel(new ImageIcon(drawField));
-		drawLabel.setBounds(10,80,panelWidth,panelHeight);
-		drawLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+		drawLabel.setBounds(10,80,480,370);
 		frame.add(drawLabel);
 	}
-	
 	private void createPaint() {
 		paint = new DrawPaintManager();
-		paint.setBounds(10,80,panelWidth, panelHeight);
+		paint.setBounds(10,80,480, 370);
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
 		frame.add(paint);
@@ -81,7 +75,6 @@ public class MainGui {
 					OutputMessage.msg.flush();
 				}
 			}
-			
 			public void mouseMoved(MouseEvent e) {}
 		});
 	}
@@ -96,13 +89,10 @@ public class MainGui {
 		frame.add(btn.getGreenbtn());
 		frame.add(btn.getYellowbtn());
 		frame.add(btn.getEraserbtn());
-		//frame.add(btn.getClearbtn());
 	}
 	
 	private void createAnswerFrame() {
 		answerTextField = new JTextField();
-		Border listBorder = BorderFactory.createLineBorder(Color.black);
-		answerTextField.setBorder(listBorder);
 		answerTextField.setEnabled(false);
 		answerTextField.setDisabledTextColor(Color.black);
 		answerTextField.setHorizontalAlignment(JTextField.CENTER);
@@ -112,21 +102,16 @@ public class MainGui {
 	
 	private void createPaintTextArea() {
 		textArea = new JTextArea();
-		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(500,80,180,350);
-		Border textAreaBorder = BorderFactory.createLineBorder(Color.black);
+		textArea.setBounds(500,80,180,350);
 		textArea.setEnabled(false);
 		textArea.setDisabledTextColor(Color.black);
-		textArea.setBorder(textAreaBorder);
 		textArea.setCaretPosition(textArea.getDocument().getLength());
-		frame.add(scroll);
+		frame.add(textArea);
 	}
 	
 	private void createPaintInputTextField() {
 		inputTextField = new JTextField();
 		inputTextField.setBounds(500,430,180,20);
-		Border inputBorder = BorderFactory.createLineBorder(Color.black);
-		inputTextField.setBorder(inputBorder);
 		inputTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -138,19 +123,16 @@ public class MainGui {
 		});
 		frame.add(inputTextField);
 	}
-
-	public BufferedImage getDrawField() {
-		return drawField;
-	}
-
-	public DrawPaintManager getPaint() {
-		return paint;
-	}
-
+	
 	public JTextField getAnswerTextField() {
 		return answerTextField;
 	}
-
+	public BufferedImage getDrawField() {
+		return drawField;
+	}
+	public DrawPaintManager getPaint() {
+		return paint;
+	}
 	public JTextArea getTextArea() {
 		return textArea;
 	}
