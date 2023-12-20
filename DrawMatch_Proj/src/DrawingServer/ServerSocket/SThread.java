@@ -54,7 +54,7 @@ public class SThread extends Thread {
 					if (args[1].equals(GameManager.answer + " ") && GameManager.turnToAnswer == false
 							&& (!(this.id).equals(GameManager.Id))) {
 						GameManager.turnToAnswer = true;
-						GameManager.gotAnswerRight(id);
+						GameManager.userCorrect(id);
 					}
 					if (args[0].equals("Chatting")) {
 						args[1] += " ";

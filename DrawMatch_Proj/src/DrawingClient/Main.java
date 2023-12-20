@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String id=null;
+		String id = null;
 		
 		MainGui main = new MainGui();
 		LoginGui Login = new LoginGui();
@@ -17,9 +17,7 @@ public class Main {
 		//로그인 창 생성
 		Login.makeLoginFrame();
 		
-		for (id = Login.getId(); id == null; id = Login.getId()) {
-		    System.out.println("");
-		}
+		for (id = Login.getId(); id == null; id = Login.getId()) {System.out.println("");}
 		
 		Socket.setIp("127.0.0.1");
 		Socket.setPort(8888);

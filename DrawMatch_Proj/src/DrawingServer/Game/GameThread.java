@@ -26,7 +26,7 @@ public class GameThread extends Thread{
 			GameManager.turnToAnswer = false;
 			
 			GameManager.Id = ServerSocketProtocol.List.get(index).getUserId();
-			GameManager.ChatOnAllUser(GameManager.Id+"님의 차례입니다.");
+			GameManager.userAnnouncement(GameManager.Id+"님의 차례입니다.");
 			
 			chatTextArea.append(GameManager.Id+ "님의 차례입니다.\n");
 			
@@ -45,7 +45,7 @@ public class GameThread extends Thread{
 				}
 			}
 			ServerSocketProtocol.List.get(index).outputMessage("Correct:"+ " ");
-			GameManager.allFailed();
+			GameManager.userFailed();
 			++index;
 			if(index == ServerSocketProtocol.List.size()) {index = 0;}
 		}

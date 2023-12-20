@@ -63,7 +63,7 @@ public class InputMessage extends Thread{
 						paint.repaint();
 						paint.printAll(drawField.getGraphics());
 					//그리기 색상관리
-					}else if (args[0].equals("COLOR")) {
+					}else if (args[0].equals("Color")) {
 						if (args[1].equals("BLACK")){paint.setColor(Color.black);}
 						else if (args[1].equals("BLUE")){paint.setColor(Color.blue);}
 						else if (args[1].equals("RED")){paint.setColor(Color.red);}

@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.net.Socket;
 
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import DrawingClient.ClientSocket.MsgThread.InputMessage;
 import DrawingClient.ClientSocket.MsgThread.OutputMessage;
@@ -13,7 +12,6 @@ import DrawingClient.Gui.DrawPaintManager;
 public class ClientSocketProtocol {
 	static public boolean starGame = true;
 	static public boolean changeTurn = true;
-	
 
 	private BufferedImage drawField;
 	private DrawPaintManager paint;
@@ -26,8 +24,8 @@ public class ClientSocketProtocol {
 	private Socket Server;
 
 	//메시지 스레드
-	private OutputMessage Thread1;
-	private InputMessage Thread2;
+	private OutputMessage out;
+	private InputMessage in;
 	
 	//서버 연결 시작
 	public void start() {
@@ -41,19 +39,19 @@ public class ClientSocketProtocol {
 	}
 	
 	//스레드 생성
-	private void createThread() {
-		Thread1 = new OutputMessage();
-		Thread2 = new InputMessage();
+	private void clientSocket() {
+		out = new OutputMessage();
+		in = new InputMessage();
 		
-		Thread1.setSocket(Server);
-		Thread1.setId(id);
-		Thread2.setSocket(Server);
-		Thread2.setPaint(paint);
-		Thread2.setTextArea(textArea);
-		Thread2.setDrawField(drawField);
+		out.setSocket(Server);
+		out.setId(id);
+		in.setSocket(Server);
+		in.setPaint(paint);
+		in.setTextArea(textArea);
+		in.setDrawField(drawField);
 		
-		Thread1.start();
-		Thread2.start();
+		out.start();
+		in.start();
 	}
 	
 	public void setId(String id) {
@@ -73,6 +71,6 @@ public class ClientSocketProtocol {
 	}
 	public void setDrawField(BufferedImage drawField) {
 		this.drawField = drawField;
-		createThread();
+		clientSocket();
 	}
 }

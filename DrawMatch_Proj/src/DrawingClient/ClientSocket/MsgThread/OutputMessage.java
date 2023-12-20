@@ -7,7 +7,7 @@ import java.net.Socket;
 public class OutputMessage extends Thread{
 	private String id;
 	private Socket Server;
-	static public PrintWriter msg;
+	static public PrintWriter out;
 	
 	public void run() {
 		super.run();
@@ -22,13 +22,13 @@ public class OutputMessage extends Thread{
 	}
 	private void CreateOutputMessage() {
 		try {
-			msg = new PrintWriter(Server.getOutputStream());
+			out = new PrintWriter(Server.getOutputStream());
 		}catch(IOException e) {
 			System.out.println("[오류] 발생");
 		}
 	}
 	private void OutputId() {
-		msg.println(id);
-		msg.flush();
+		out.println(id);
+		out.flush();
 	}
 }

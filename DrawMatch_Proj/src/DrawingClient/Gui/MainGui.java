@@ -77,8 +77,8 @@ public class MainGui {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
 				if(ClientSocketProtocol.changeTurn == true) {
-					OutputMessage.msg.println("Coordinates:"+e.getX()+","+e.getY());
-					OutputMessage.msg.flush();
+					OutputMessage.out.println("Coordinates:"+e.getX()+","+e.getY());
+					OutputMessage.out.flush();
 				}
 			}
 			public void mouseMoved(MouseEvent e) {}
@@ -112,8 +112,8 @@ public class MainGui {
 		inputTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					OutputMessage.msg.println("Chatting:" + inputTextField.getText());
-					OutputMessage.msg.flush();
+					OutputMessage.out.println("Chatting:" + inputTextField.getText());
+					OutputMessage.out.flush();
 					inputTextField.setText("");
 				}
 			}

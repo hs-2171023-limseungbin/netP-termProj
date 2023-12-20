@@ -18,17 +18,17 @@ public class PaintBtnManager extends JButton {
         setText(getColorCommand(color));
         setOpaque(true);
         setBackground(color);
-        makeEvent(color);
+        colorEvent(color);
     }
     
-    private void makeEvent(final Color color) {
+    private void colorEvent(final Color color) {
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	// 유저 차례에 색상 변경 가능
                 if (ClientSocketProtocol.changeTurn == true) {
                 	//색상변경(서버 전송)
-                    OutputMessage.msg.println("Color:" + getColorCommand(color));
-                    OutputMessage.msg.flush();
+                    OutputMessage.out.println("Color:" + getColorCommand(color));
+                    OutputMessage.out.flush();
                     paint.setColor(color);
                 }
             }
