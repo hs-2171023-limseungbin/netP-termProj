@@ -63,7 +63,7 @@ public class MainGui {
 		chatTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					chatTextArea.append("운영자 >> " + chatTextField.getText()+"\n");
+					chatTextArea.append("[운영자] " + chatTextField.getText()+"\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 					for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 						ServerSocketProtocol.List.get(i).outputMessage("Chatting:[운영자] " + chatTextField.getText());

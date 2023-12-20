@@ -67,19 +67,19 @@ public class ServerSocketProtocol {
 			public void actionPerformed(ActionEvent e) {
 				//게임 시작 인원 조절
 				if(checkUserNum()) {
-					chatTextArea.append("[운영자]: 인원부족(인원이 2명 이하입니다.)\n");
+					chatTextArea.append("[운영자]:참여 인원수를 확인하세요\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 				}else {startGame();}
 			}
 		});
 	}
 	private boolean checkUserNum() {
-		if(List.size() > 1) {
+		if(List.size() > 1 && List.size()<5) {
 			return false;
 		}else {return true;}
 	}
 	private void startGame() {
-		chatTextArea.append("[운영자]: 게임 시작.\n");
+		chatTextArea.append("게임 시작.\n");
 		chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 		GameThread gameThread = new GameThread();
 		gameThread.setChatTextArea(chatTextArea);

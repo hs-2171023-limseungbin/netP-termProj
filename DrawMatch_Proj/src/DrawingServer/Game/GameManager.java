@@ -30,9 +30,6 @@ public class GameManager {
 	static public void userCorrect(String id) {
 		turnToAnswer = true;
 		answer = "";
-		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).outputMessage("Chatting:" + id + "님 정답");
-		}
 	}
 	
 	//입장한 모든 사람에게 메시지를 전송하는 메서드
