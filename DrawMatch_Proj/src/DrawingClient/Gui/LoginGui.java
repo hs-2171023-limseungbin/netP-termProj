@@ -10,22 +10,20 @@ import javax.swing.JTextField;
 
 //로그인 GUI
 public class LoginGui {
-    private JFrame frame;
+	private String id = null;
+	
+	private JFrame frame;
     private JLabel titleLabel;
     private JLabel idLabel;
     private JTextField idTextField;
     private JButton button;
-
-    private String id = null;
-    private String ip = "127.0.0.1";
-
+    
     public void makeLoginFrame() {
         createLoginFrame();
         createTitleLabel();
         createIdLabel();
         createIdTextField();
         createButton();
-        setIp();
         setId();
         frame.setVisible(true);
     }
@@ -35,10 +33,8 @@ public class LoginGui {
         frame.setTitle("로그인 화면");
         frame.setSize(300, 150);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false); // 프레임 크기 변경 금지
         frame.setLayout(null); // 레이아웃을 사용하지 않음
         frame.setLocationRelativeTo(null); // 중앙에 표시
-        //frame.setVisible(true);
     }
 
     private void createTitleLabel() {
@@ -78,13 +74,5 @@ public class LoginGui {
 
     public String getId() {
         return this.id;
-    }
-
-    public String getIp() {
-        return this.ip;
-    }
-
-    private void setIp() {
-        this.ip = "127.0.0.1";
     }
 }
