@@ -77,7 +77,7 @@ public class MainGui {
 		drawLabel.addMouseMotionListener(new MouseMotionListener() {
 			public void mouseDragged(MouseEvent e) {
 				if(ClientSocketProtocol.changeTurn == true) {
-					OutputMessage.msg.println("Position:"+e.getX()+","+e.getY());
+					OutputMessage.msg.println("Coordinates:"+e.getX()+","+e.getY());
 					OutputMessage.msg.flush();
 				}
 			}
@@ -130,7 +130,7 @@ public class MainGui {
 		inputTextField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					OutputMessage.msg.println("CHAT:" + inputTextField.getText());
+					OutputMessage.msg.println("Chatting:" + inputTextField.getText());
 					OutputMessage.msg.flush();
 					inputTextField.setText("");
 				}

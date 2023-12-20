@@ -69,7 +69,7 @@ public class MainGui {
 					chatTextArea.append("운영자 >> " + chatTextField.getText()+"\n");
 					chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());
 					for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-						ServerSocketProtocol.List.get(i).sendMsg("운영자 >> " + chatTextField.getText());
+						ServerSocketProtocol.List.get(i).sendMsg("Chatting:운영자 >> " + chatTextField.getText());
 					}
 					chatTextField.setText("");
 				}

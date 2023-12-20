@@ -40,7 +40,7 @@ public class SThread extends Thread{
 		while(true) {
 			try {
 				msg = enterUser.readLine();
-				if(msg.contains("CHAT:")){
+				if(msg.contains("Chatting:")){
 					msg += " ";
 					String[] pars = msg.split(":");
 					System.out.println(pars[1]);
@@ -48,14 +48,14 @@ public class SThread extends Thread{
 						GameManager.turnToAnswer = true;
 						GameManager.gotAnswerRight(id);
 					}
-					if(pars[0].equals("CHAT")) {
+					if(pars[0].equals("Chatting")) {
 						pars[1] += " ";
-						msg = "CHAT:" + "[" + id + "]" + pars[1];
+						msg = "Chatting:" + "[" + id + "]" + pars[1];
 					}
 				}
 				chatOnAllUserMsg();
 			}catch(IOException e) {
-				msg = "CHAT:" + id + " out the room.";
+				msg = "Chatting:" + id + " 퇴장하셨습니다.";
 				chatOnAllUserMsg();
 				ServerSocketProtocol.List.remove(user);
 				
@@ -70,7 +70,7 @@ public class SThread extends Thread{
 			chatTextArea.append(id + "님이 입장하셨습니다.\n");
 		}catch(IOException e) {
 		}for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
-			ServerSocketProtocol.List.get(i).sendMsg("입장:" + id);
+			ServerSocketProtocol.List.get(i).sendMsg("Login:" + id);
 		}
 	}
 	//입장한 모든 사용자에게 메시지 전송
@@ -78,7 +78,7 @@ public class SThread extends Thread{
 		for(int i=0; i<ServerSocketProtocol.List.size(); i++) {
 			ServerSocketProtocol.List.get(i).sendMsg(msg);
 		}
-		if(msg.contains("CHAT:")) {
+		if(msg.contains("Chatting:")) {
 			String pars[] = msg.split(":");
 			chatTextArea.append(pars[1]+"\n");
 			chatTextArea.setCaretPosition(chatTextArea.getDocument().getLength());

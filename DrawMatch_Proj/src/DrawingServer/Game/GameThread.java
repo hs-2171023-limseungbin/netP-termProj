@@ -30,11 +30,11 @@ public class GameThread extends Thread{
 			
 			chatTextArea.append("[운영자]>"+ GameManager.Id+ "님의 차례입니다.\n");
 			
-			ServerSocketProtocol.List.get(index).sendMsg("SET:TRUE");
-			ServerSocketProtocol.List.get(index).sendMsg("CHAT:[운영자]>" + "당신의 차례입니다.");
-			ServerSocketProtocol.List.get(index).sendMsg("CHAT:[운영자]>" + "정답은 "+ answer + "입니다.");
-			ServerSocketProtocol.List.get(index).sendMsg("CHAT:[운영자]>" + "정답을 잘 설명해보세요");
-			ServerSocketProtocol.List.get(index).sendMsg("ANSWER:"+ answer);
+			ServerSocketProtocol.List.get(index).sendMsg("Setting:TRUE");
+			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "당신의 차례입니다.");
+			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "정답은 "+ answer + "입니다.");
+			ServerSocketProtocol.List.get(index).sendMsg("Chatting:[운영자]>" + "정답을 잘 설명해보세요");
+			ServerSocketProtocol.List.get(index).sendMsg("Answer:"+ answer);
 			while(true) {
 				if(GameManager.turnToAnswer == true) {break;}
 				else {
@@ -43,7 +43,7 @@ public class GameThread extends Thread{
 					}catch(InterruptedException e){}
 				}
 			}
-			ServerSocketProtocol.List.get(index).sendMsg("ANSWER:"+ " ");
+			ServerSocketProtocol.List.get(index).sendMsg("Answer:"+ " ");
 			GameManager.allFailed();
 			++index;
 			if(index == ServerSocketProtocol.List.size()) {index = 0;}

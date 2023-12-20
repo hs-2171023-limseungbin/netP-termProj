@@ -31,7 +31,7 @@ public class InputMessage extends Thread{
 	public void run() {
 		super.run();
 		CreateInputMessage();
-		getMsg();
+		GetInputMessage();
 	}
 	
 	public void setSocket(Socket Server) {
@@ -43,85 +43,79 @@ public class InputMessage extends Thread{
 		try {
 			in = new BufferedReader(new InputStreamReader(Server.getInputStream()));
 		}catch(IOException e) {
-			e.printStackTrace();
+			System.out.println("[오류] 발생");
 		}
 	}
 	
 	//메시지 수신 및 처리
-	private void getMsg() {
+	private void GetInputMessage() {
 		while(true) {
 			try {
 				msg = in.readLine();
 				if(msg.contains(":")) {
-					String[] pars = msg.split(":");
-					if(pars[0].equals("Position")) {
-						pars = pars[1].split(",");
-						x = Integer.parseInt(pars[0]);
-						y = Integer.parseInt(pars[1]);
+					String[] args = msg.split(":");
+					if(args[0].equals("Coordinates")) {
+						args = args[1].split(",");
+						x = Integer.parseInt(args[0]);
+						y = Integer.parseInt(args[1]);
+						
 						paint.setX(x);
 						paint.setY(y);
 						paint.repaint();
 						paint.printAll(drawField.getGraphics());
 					//그리기 색상관리
-					}else if (pars[0].equals("Color")) {
-						if (pars[1].equals("BLACK"))
-							paint.setColor(Color.black);
-						else if (pars[1].equals("BLUE"))
-							paint.setColor(Color.blue);
-						else if (pars[1].equals("RED"))
-							paint.setColor(Color.red);
-						else if (pars[1].equals("GREEN"))
-							paint.setColor(Color.green);
-						else if (pars[1].equals("YELLOW"))
-							paint.setColor(Color.yellow);
-						else if (pars[1].equals("WHITE"))
-							paint.setColor(Color.white);
-					} else if (pars[0].equals("CHAT")) {
+					}else if (args[0].equals("Color")) {
+						if (args[1].equals("BLACK")){paint.setColor(Color.black);}
+						else if (args[1].equals("BLUE")){paint.setColor(Color.blue);}
+						else if (args[1].equals("RED")){paint.setColor(Color.red);}
+						else if (args[1].equals("GREEN")){paint.setColor(Color.green);}
+						else if (args[1].equals("YELLOW")){paint.setColor(Color.yellow);}
+						else if (args[1].equals("WHITE")) {paint.setColor(Color.white);}
+					} else if (args[0].equals("Chatting")) {
 						//채팅 메시지 출력
-						textArea.append(pars[1] + "\n");
+						textArea.append(args[1] + "\n");
 						textArea.setCaretPosition(textArea.getDocument().getLength());
-					} else if (pars[0].equals("JOIN")) {
+					} else if (args[0].equals("Login")) {
 						// 참가 메시지 출력
-						textArea.append(pars[1] + " join the room.\n");
+						textArea.append(args[1] + " 님 접속\n");
 						textArea.setCaretPosition(textArea.getDocument().getLength());
-					} else if (pars[0].equals("MODE")) {
-						if (pars[1].equals("CLEAR"))
-							ClearDrawField();
-					} else if (pars[0].equals("SET")) {
-						if (pars[1].equals("FALSE")) {
+					} else if (args[0].equals("Mode")) {
+						if (args[1].equals("Repaint")){RePaintDrawField();}
+					} else if (args[0].equals("Setting")) {
+						if (args[1].equals("False")) {
 							ClientSocketProtocol.changeTurn = false;
-						} else if(pars[1].equals("TRUE")) {
+						} else if(args[1].equals("True")) {
 							ClientSocketProtocol.changeTurn = true;
 						}
-					} else if(pars[0].equals("ANSWER")) {
+					} else if(args[0].equals("Correct")) {
 						//정답 텍스트 필드 설정
-						answerTextField.setText(pars[1]);
+						answerTextField.setText(args[1]);
 					}
 			}
 		}catch(IOException e) {
-			e.printStackTrace();}
+			System.out.println("[오류] 발생");
+			}
 		}
 	}
 	// 게임 진행을 위해 그리기 영역 초기화(지우기)
-	private void ClearDrawField() {
+	private void RePaintDrawField() {
 		paint.setChoiceColor(false);
 		paint.repaint();
 		paint.printAll(drawField.getGraphics());
 	}
+	
+	
+	public void setAnswerTextField(JTextField answerTextField) {
+		this.answerTextField = answerTextField;
+	}
 	public void setPaint(DrawPaintManager paint) {
 		this.paint = paint;
 	}
-
 	public void setDrawField(BufferedImage drawField) {
 		this.drawField = drawField;
 	}
-
 	public void setTextArea(JTextArea textArea) {
 		this.textArea = textArea;
-	}
-
-	public void setAnswerTextField(JTextField answerTextField) {
-		this.answerTextField = answerTextField;
 	}
 }
 
